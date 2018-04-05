@@ -36,13 +36,9 @@ Pods/
 # For more information about the recommended setup visit:
 # https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Gitignore.md
 
-kids_taxi/fastlane/report.xml
-kids_taxi/fastlane/screenshots
-kids_taxi/fastlane/test_output
 
 .ruby-version
 .bundle
-kids_taxi/vendor/bundle
 
 .DS_Store
 
