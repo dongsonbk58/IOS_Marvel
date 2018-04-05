@@ -9,10 +9,16 @@
 /* Begin PBXBuildFile section */
 		211CD8B1C0C02ADD7033A77D /* Pods_IOSMarvel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09255C6E455F56257990EC04 /* Pods_IOSMarvel.framework */; };
 		876123F32075B3B8001E7167 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876123F22075B3B8001E7167 /* AppDelegate.swift */; };
-		876123F52075B3B8001E7167 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876123F42075B3B8001E7167 /* ViewController.swift */; };
-		876123F82075B3B8001E7167 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 876123F62075B3B8001E7167 /* Main.storyboard */; };
 		876123FA2075B3B8001E7167 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 876123F92075B3B8001E7167 /* Assets.xcassets */; };
 		876123FD2075B3B8001E7167 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 876123FB2075B3B8001E7167 /* LaunchScreen.storyboard */; };
+		87FB623C2076112F00B4FE35 /* MarvelTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB623B2076112F00B4FE35 /* MarvelTabbarController.swift */; };
+		87FB623E2076116000B4FE35 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB623D2076116000B4FE35 /* BaseViewController.swift */; };
+		87FB62412076118A00B4FE35 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB623F2076118A00B4FE35 /* HomeVC.swift */; };
+		87FB62422076118A00B4FE35 /* HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87FB62402076118A00B4FE35 /* HomeVC.xib */; };
+		87FB62452076119800B4FE35 /* FavoriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB62432076119800B4FE35 /* FavoriteVC.swift */; };
+		87FB62462076119800B4FE35 /* FavoriteVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87FB62442076119800B4FE35 /* FavoriteVC.xib */; };
+		87FB62502076209C00B4FE35 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB624F2076209C00B4FE35 /* Constant.swift */; };
+		87FB62532076229400B4FE35 /* XibInitProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB62522076229400B4FE35 /* XibInitProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,11 +27,17 @@
 		103BC25D03A2830D17DEF0EA /* Pods-IOSMarvel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOSMarvel.release.xcconfig"; path = "Pods/Target Support Files/Pods-IOSMarvel/Pods-IOSMarvel.release.xcconfig"; sourceTree = "<group>"; };
 		876123EF2075B3B8001E7167 /* IOSMarvel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOSMarvel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		876123F22075B3B8001E7167 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		876123F42075B3B8001E7167 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		876123F72075B3B8001E7167 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		876123F92075B3B8001E7167 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		876123FC2075B3B8001E7167 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		876123FE2075B3B8001E7167 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		87FB623B2076112F00B4FE35 /* MarvelTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelTabbarController.swift; sourceTree = "<group>"; };
+		87FB623D2076116000B4FE35 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		87FB623F2076118A00B4FE35 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		87FB62402076118A00B4FE35 /* HomeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeVC.xib; sourceTree = "<group>"; };
+		87FB62432076119800B4FE35 /* FavoriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVC.swift; sourceTree = "<group>"; };
+		87FB62442076119800B4FE35 /* FavoriteVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteVC.xib; sourceTree = "<group>"; };
+		87FB624F2076209C00B4FE35 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		87FB62522076229400B4FE35 /* XibInitProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XibInitProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,14 +81,76 @@
 		876123F12075B3B8001E7167 /* IOSMarvel */ = {
 			isa = PBXGroup;
 			children = (
+				87FB62322076101500B4FE35 /* Base Classes */,
+				87FB62342076103B00B4FE35 /* Modules */,
+				87FB624720761B8800B4FE35 /* Extension */,
+				87FB624E2076207D00B4FE35 /* Ultil */,
+				87FB62512076228600B4FE35 /* Protocol */,
 				876123F22075B3B8001E7167 /* AppDelegate.swift */,
-				876123F42075B3B8001E7167 /* ViewController.swift */,
-				876123F62075B3B8001E7167 /* Main.storyboard */,
 				876123F92075B3B8001E7167 /* Assets.xcassets */,
 				876123FB2075B3B8001E7167 /* LaunchScreen.storyboard */,
 				876123FE2075B3B8001E7167 /* Info.plist */,
 			);
 			path = IOSMarvel;
+			sourceTree = "<group>";
+		};
+		87FB62322076101500B4FE35 /* Base Classes */ = {
+			isa = PBXGroup;
+			children = (
+				87FB623B2076112F00B4FE35 /* MarvelTabbarController.swift */,
+				87FB623D2076116000B4FE35 /* BaseViewController.swift */,
+			);
+			path = "Base Classes";
+			sourceTree = "<group>";
+		};
+		87FB62342076103B00B4FE35 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				87FB6239207610E200B4FE35 /* Home */,
+				87FB623A207610E900B4FE35 /* Favorite */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		87FB6239207610E200B4FE35 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				87FB623F2076118A00B4FE35 /* HomeVC.swift */,
+				87FB62402076118A00B4FE35 /* HomeVC.xib */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		87FB623A207610E900B4FE35 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				87FB62432076119800B4FE35 /* FavoriteVC.swift */,
+				87FB62442076119800B4FE35 /* FavoriteVC.xib */,
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
+		87FB624720761B8800B4FE35 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		87FB624E2076207D00B4FE35 /* Ultil */ = {
+			isa = PBXGroup;
+			children = (
+				87FB624F2076209C00B4FE35 /* Constant.swift */,
+			);
+			path = Ultil;
+			sourceTree = "<group>";
+		};
+		87FB62512076228600B4FE35 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				87FB62522076229400B4FE35 /* XibInitProtocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		B6203DC51F916F1C2A7BBDB3 /* Pods */ = {
@@ -151,9 +225,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87FB62462076119800B4FE35 /* FavoriteVC.xib in Resources */,
 				876123FD2075B3B8001E7167 /* LaunchScreen.storyboard in Resources */,
+				87FB62422076118A00B4FE35 /* HomeVC.xib in Resources */,
 				876123FA2075B3B8001E7167 /* Assets.xcassets in Resources */,
-				876123F82075B3B8001E7167 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,22 +308,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				876123F52075B3B8001E7167 /* ViewController.swift in Sources */,
+				87FB623C2076112F00B4FE35 /* MarvelTabbarController.swift in Sources */,
+				87FB62412076118A00B4FE35 /* HomeVC.swift in Sources */,
 				876123F32075B3B8001E7167 /* AppDelegate.swift in Sources */,
+				87FB623E2076116000B4FE35 /* BaseViewController.swift in Sources */,
+				87FB62532076229400B4FE35 /* XibInitProtocol.swift in Sources */,
+				87FB62452076119800B4FE35 /* FavoriteVC.swift in Sources */,
+				87FB62502076209C00B4FE35 /* Constant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		876123F62075B3B8001E7167 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				876123F72075B3B8001E7167 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		876123FB2075B3B8001E7167 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
