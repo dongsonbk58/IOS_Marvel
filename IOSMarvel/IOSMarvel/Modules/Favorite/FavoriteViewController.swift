@@ -1,5 +1,5 @@
 //
-//  HomeVC.swift
+//  FavoriteVC.swift
 //  IOSMarvel
 //
 //  Created by mai.thi.giang on 4/5/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeVC: BaseViewController {
+class FavoriteViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -49,7 +49,7 @@ class MarvelTabbarController: UITabBarController {
     }
 
     func setTabbarItemHome() -> UINavigationController {
-        let homeVC = HomeVC.instantiateFromXib()
+        let homeVC = HomeViewController.instantiateFromXib()
         let homeNav = UINavigationController.init(rootViewController: homeVC)
         let homeTabbar = UITabBarItem()
         homeTabbar.tag = 0
@@ -60,7 +60,7 @@ class MarvelTabbarController: UITabBarController {
     }
 
     func setTabbarItemFavorite() -> UINavigationController {
-        let favoriteVC = FavoriteVC.instantiateFromXib()
+        let favoriteVC = FavoriteViewController.instantiateFromXib()
         let favoriteNav = UINavigationController.init(rootViewController: favoriteVC)
         let favoriteTabbar = UITabBarItem()
         favoriteTabbar.tag = 1
