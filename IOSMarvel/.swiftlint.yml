@@ -22,7 +22,7 @@ function_body_length:
   warning: 50
   error: 60
 
-line_length: 160
+line_length: 120
 
 identifier_name:
   excluded: # excluded via string array
