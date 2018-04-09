@@ -28,7 +28,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A-Bomd (HAS)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="42h-Kj-NQo">
-                                <rect key="frame" x="105" y="5" width="294" height="30"/>
+                                <rect key="frame" x="105" y="5" width="259" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="AQU-Nn-zye"/>
                                 </constraints>
@@ -43,16 +43,29 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y9Y-lB-Ueo">
+                                <rect key="frame" x="364" y="5" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="kRd-p8-m3S"/>
+                                    <constraint firstAttribute="height" constant="30" id="ziM-zW-wtN"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="icn_heart"/>
+                                <connections>
+                                    <action selector="favoritePressed:" destination="gTV-IL-0wX" eventType="touchUpInside" id="lpu-G2-F8H"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="iKM-pl-880" firstAttribute="top" secondItem="42h-Kj-NQo" secondAttribute="bottom" constant="5" id="60f-4r-a8U"/>
-                            <constraint firstAttribute="trailing" secondItem="42h-Kj-NQo" secondAttribute="trailing" id="KeT-iN-9VL"/>
+                            <constraint firstAttribute="trailing" secondItem="y9Y-lB-Ueo" secondAttribute="trailing" constant="5" id="G63-Jc-0bh"/>
                             <constraint firstItem="42h-Kj-NQo" firstAttribute="leading" secondItem="iOd-Xj-EyU" secondAttribute="trailing" constant="10" id="KrZ-7w-rML"/>
                             <constraint firstAttribute="trailing" secondItem="iKM-pl-880" secondAttribute="trailing" id="O5s-6G-1kt"/>
                             <constraint firstItem="iOd-Xj-EyU" firstAttribute="leading" secondItem="XV4-wY-KYt" secondAttribute="leading" constant="5" id="Qju-89-XsX"/>
                             <constraint firstAttribute="bottom" secondItem="iOd-Xj-EyU" secondAttribute="bottom" constant="5" id="TkX-B3-pEl"/>
                             <constraint firstItem="iKM-pl-880" firstAttribute="leading" secondItem="iOd-Xj-EyU" secondAttribute="trailing" constant="10" id="Ux9-ig-NKT"/>
+                            <constraint firstItem="y9Y-lB-Ueo" firstAttribute="top" secondItem="XV4-wY-KYt" secondAttribute="top" constant="5" id="Wsr-62-sog"/>
+                            <constraint firstItem="y9Y-lB-Ueo" firstAttribute="leading" secondItem="42h-Kj-NQo" secondAttribute="trailing" id="Z8A-dN-vDZ"/>
                             <constraint firstItem="42h-Kj-NQo" firstAttribute="top" secondItem="XV4-wY-KYt" secondAttribute="top" constant="5" id="cJI-5b-P02"/>
                             <constraint firstAttribute="bottom" secondItem="iKM-pl-880" secondAttribute="bottom" id="eRS-ga-Jlb"/>
                             <constraint firstItem="iOd-Xj-EyU" firstAttribute="top" secondItem="XV4-wY-KYt" secondAttribute="top" constant="5" id="v5o-d9-o3d"/>
@@ -67,10 +80,16 @@
                 <constraint firstAttribute="trailing" secondItem="XV4-wY-KYt" secondAttribute="trailing" constant="10" id="uaG-G9-IGK"/>
             </constraints>
             <size key="customSize" width="419" height="97"/>
+            <connections>
+                <outlet property="avatarImageVIew" destination="iOd-Xj-EyU" id="bhj-UQ-RkQ"/>
+                <outlet property="descriptionLbl" destination="iKM-pl-880" id="FNG-4O-TmK"/>
+                <outlet property="nameLbl" destination="42h-Kj-NQo" id="cWA-9H-All"/>
+            </connections>
             <point key="canvasLocation" x="-159.5" y="75"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="a-bomb" width="850" height="850"/>
+        <image name="icn_heart" width="20" height="20"/>
     </resources>
 </document>

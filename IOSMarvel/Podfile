@@ -10,4 +10,7 @@ target 'IOSMarvel' do
     pod 'Alamofire', '~> 4.5'
     pod 'AlamofireObjectMapper', '~> 5.0.0'
     pod 'SwiftLint'
+    pod 'NVActivityIndicatorView'
+    pod 'Kingfisher'
+    pod 'SwiftHash'
 end

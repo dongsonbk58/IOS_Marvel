@@ -7,16 +7,24 @@
 //
 
 import UIKit
+import Alamofire
 
-class HomeViewController: BaseViewController {
+class HomeViewController: BaseViewController, AlertViewController {
 
     @IBOutlet weak var characterCollectionView: UICollectionView!
 
     var characterList = [Character]()
     var isGrid = true
+    var page = 1
+    var limit = 10
+    var isLoadMore = false
+    var isLoading = false
+    private let characterRepository: CharacterRepository = CharacterImplement(api: APIService.share)
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        getListCharacter()
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,6 +57,57 @@ class HomeViewController: BaseViewController {
         characterCollectionView.backgroundColor = UIColor.lightGray
     }
 
+    func getListCharacter() {
+        self.page = 1
+        self.showLoadingOnParent()
+        characterRepository.getListCharacter(limit: limit) { (result) in
+            switch result {
+            case .success(let characterResponse):
+                self.characterList.removeAll()
+                self.characterList = (characterResponse?.data?.characters)!
+                if self.characterList.count < self.limit {
+                    self.isLoadMore = false
+                } else {
+                    self.isLoadMore = true
+                }
+                self.characterCollectionView.reloadData()
+                self.page += 1
+                self.hideLoading()
+            case .failure(let error):
+                self.showErrorAlert(message: error?.errorMessage)
+                self.hideLoading()
+            }
+        }
+    }
+
+    func loadMoreData() {
+        if isLoading {
+            return
+        }
+        self.showLoadingOnParent()
+        characterRepository.getListCharacter(limit: self.page * limit) { (result) in
+            switch result {
+            case .success(let characterResponse):
+                let count = self.characterList.count
+                var characterArr = [Character]()
+                characterArr = (characterResponse?.data?.characters)!
+                self.characterList.append(contentsOf: characterArr)
+                self.page += 1
+                if count < self.characterList.count {
+                    self.isLoadMore = true
+                } else {
+                    self.isLoadMore = false
+                }
+                self.characterCollectionView.reloadData()
+                self.isLoading = false
+                self.hideLoading()
+            case .failure(let error):
+                self.showErrorAlert(message: error?.errorMessage)
+                self.hideLoading()
+            }
+        }
+    }
+
     @objc func switchCollectionView() {
         self.isGrid = !self.isGrid
         self.characterCollectionView.reloadData()
@@ -65,7 +124,7 @@ extension HomeViewController: UICollectionViewDelegate {
 
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return characterList.count
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -75,11 +134,25 @@ extension HomeViewController: UICollectionViewDataSource {
                                                                 for: indexPath) as? CharacterCollectionViewCell else {
                  return UICollectionViewCell()
             }
+            cell.setContentForCell(character: characterList[indexPath.row])
+            if (indexPath.row == self.characterList.count - 1) && (isLoadMore == true) {
+                if !isLoading {
+                    self.loadMoreData()
+                    isLoading = true
+                }
+            }
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CharacterListCollectionViewCell",
              for: indexPath) as? CharacterListCollectionViewCell else {
                  return UICollectionViewCell()
+            }
+            cell.setContentForCell(character: characterList[indexPath.row])
+            if (indexPath.row == self.characterList.count - 1) && (isLoadMore == true) {
+                if !isLoading {
+                    self.loadMoreData()
+                    isLoading = true
+                }
             }
             return cell
         }
