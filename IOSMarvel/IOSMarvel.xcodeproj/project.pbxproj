@@ -27,6 +27,11 @@
 		876ED33920775F210066448C /* CharacterDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 876ED33720775F210066448C /* CharacterDetailViewController.xib */; };
 		876ED33C207762480066448C /* CharacterListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876ED33A207762480066448C /* CharacterListCollectionViewCell.swift */; };
 		876ED33D207762480066448C /* CharacterListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 876ED33B207762480066448C /* CharacterListCollectionViewCell.xib */; };
+		87C2BB1B207AF7E800AB2B5C /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C2BB1A207AF7E800AB2B5C /* UIImageView.swift */; };
+		87C2BB1D207B166F00AB2B5C /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C2BB1C207B166F00AB2B5C /* Data.swift */; };
+		87C2BB1F207B1A8500AB2B5C /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C2BB1E207B1A8500AB2B5C /* Thumbnail.swift */; };
+		87C2BB26207B6BA900AB2B5C /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C2BB25207B6BA900AB2B5C /* AlertViewController.swift */; };
+		87D6E15220778CF800ACE2A1 /* CharacterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D6E15120778CF800ACE2A1 /* CharacterResponse.swift */; };
 		87FB623C2076112F00B4FE35 /* MarvelTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB623B2076112F00B4FE35 /* MarvelTabbarController.swift */; };
 		87FB623E2076116000B4FE35 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB623D2076116000B4FE35 /* BaseViewController.swift */; };
 		87FB62412076118A00B4FE35 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB623F2076118A00B4FE35 /* HomeViewController.swift */; };
@@ -62,6 +67,11 @@
 		876ED33720775F210066448C /* CharacterDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterDetailViewController.xib; sourceTree = "<group>"; };
 		876ED33A207762480066448C /* CharacterListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListCollectionViewCell.swift; sourceTree = "<group>"; };
 		876ED33B207762480066448C /* CharacterListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterListCollectionViewCell.xib; sourceTree = "<group>"; };
+		87C2BB1A207AF7E800AB2B5C /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		87C2BB1C207B166F00AB2B5C /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		87C2BB1E207B1A8500AB2B5C /* Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
+		87C2BB25207B6BA900AB2B5C /* AlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		87D6E15120778CF800ACE2A1 /* CharacterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterResponse.swift; sourceTree = "<group>"; };
 		87FB623B2076112F00B4FE35 /* MarvelTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelTabbarController.swift; sourceTree = "<group>"; };
 		87FB623D2076116000B4FE35 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		87FB623F2076118A00B4FE35 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -132,11 +142,12 @@
 		876ED31A20772BCB0066448C /* Servies */ = {
 			isa = PBXGroup;
 			children = (
+				87D6E15320778D0400ACE2A1 /* Character */,
+				876ED32020772DE70066448C /* BaseRequest.swift */,
 				876ED32220772E0E0066448C /* BaseResponse.swift */,
 				876ED32420772E3C0066448C /* ErrorResponse.swift */,
 				876ED32620772E460066448C /* BaseResult.swift */,
 				876ED32820772E4D0066448C /* BaseError.swift */,
-				876ED32020772DE70066448C /* BaseRequest.swift */,
 				876ED31B20772C120066448C /* API */,
 			);
 			path = Servies;
@@ -163,6 +174,8 @@
 			isa = PBXGroup;
 			children = (
 				876ED32E2077490F0066448C /* Character.swift */,
+				87C2BB1C207B166F00AB2B5C /* Data.swift */,
+				87C2BB1E207B1A8500AB2B5C /* Thumbnail.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -185,6 +198,14 @@
 				876ED33720775F210066448C /* CharacterDetailViewController.xib */,
 			);
 			path = CharacterDetail;
+			sourceTree = "<group>";
+		};
+		87D6E15320778D0400ACE2A1 /* Character */ = {
+			isa = PBXGroup;
+			children = (
+				87D6E15120778CF800ACE2A1 /* CharacterResponse.swift */,
+			);
+			path = Character;
 			sourceTree = "<group>";
 		};
 		87FB62322076101500B4FE35 /* Base Classes */ = {
@@ -228,6 +249,8 @@
 		87FB624720761B8800B4FE35 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				87C2BB25207B6BA900AB2B5C /* AlertViewController.swift */,
+				87C2BB1A207AF7E800AB2B5C /* UIImageView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -343,14 +366,20 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-IOSMarvel/Pods-IOSMarvel-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftHash/SwiftHash.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftHash.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -417,14 +446,19 @@
 				876ED32720772E460066448C /* BaseResult.swift in Sources */,
 				876ED32920772E4D0066448C /* BaseError.swift in Sources */,
 				876ED32320772E0E0066448C /* BaseResponse.swift in Sources */,
+				87C2BB1B207AF7E800AB2B5C /* UIImageView.swift in Sources */,
 				876ED31920772B830066448C /* URLs.swift in Sources */,
 				876ED31F20772D970066448C /* CustomRequestAdapter.swift in Sources */,
 				87FB623E2076116000B4FE35 /* BaseViewController.swift in Sources */,
+				87C2BB26207B6BA900AB2B5C /* AlertViewController.swift in Sources */,
 				876ED32120772DE70066448C /* BaseRequest.swift in Sources */,
 				87FB62532076229400B4FE35 /* XibInitProtocol.swift in Sources */,
 				876ED32C207730D10066448C /* CharacterRepository.swift in Sources */,
 				876ED33320774F440066448C /* CharacterCollectionViewCell.swift in Sources */,
+				87C2BB1F207B1A8500AB2B5C /* Thumbnail.swift in Sources */,
 				87FB62452076119800B4FE35 /* FavoriteViewController.swift in Sources */,
+				87D6E15220778CF800ACE2A1 /* CharacterResponse.swift in Sources */,
+				87C2BB1D207B166F00AB2B5C /* Data.swift in Sources */,
 				876ED31E20772D970066448C /* APIService.swift in Sources */,
 				87FB62502076209C00B4FE35 /* Constant.swift in Sources */,
 				876ED33C207762480066448C /* CharacterListCollectionViewCell.swift in Sources */,

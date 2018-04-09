@@ -14,7 +14,7 @@ class Character: Mappable {
     var characterId: Int?
     var name: String?
     var description: String?
-    var path: String?
+    var thumbnail: Thumbnail?
     var modified: String?
 
     required init?(map: Map) {
@@ -25,7 +25,7 @@ class Character: Mappable {
         characterId <- map["id"]
         name <- map["name"]
         description <- map["description"]
-        path <- map["thumbnail"]["path"]
+        thumbnail <- map["thumbnail"]
         modified <- map["modified"]
     }
 }

@@ -10,4 +10,6 @@ import Foundation
 
 struct URLs {
     private static var APIBaseUrl = "https://gateway.marvel.com:443/v1/public/"
+
+    public static let APIGetListCharacterURL = APIBaseUrl + "characters"
 }

@@ -22,33 +22,61 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="a-bomb" translatesAutoresizingMaskIntoConstraints="NO" id="ThV-Oa-yyO">
                         <rect key="frame" x="0.0" y="0.0" width="213" height="220"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A-Bomb" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNj-SU-zhm">
-                        <rect key="frame" x="0.0" y="185" width="213" height="35"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.30005032592024539" colorSpace="calibratedWhite"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aM5-xP-sZd">
+                        <rect key="frame" x="0.0" y="180" width="213" height="40"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A-Bomb" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNj-SU-zhm">
+                                <rect key="frame" x="0.0" y="0.0" width="178" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Gu-r3-EyT">
+                                <rect key="frame" x="178" y="7.5" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="ILc-9O-7vZ"/>
+                                    <constraint firstAttribute="width" constant="25" id="g9k-DZ-hy5"/>
+                                </constraints>
+                                <state key="normal" image="heartWhite"/>
+                                <connections>
+                                    <action selector="favoritePressed:" destination="gTV-IL-0wX" eventType="touchUpInside" id="2up-ZH-GYX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="35" id="eS8-aj-ObP"/>
+                            <constraint firstItem="5Gu-r3-EyT" firstAttribute="centerY" secondItem="aM5-xP-sZd" secondAttribute="centerY" id="7zS-pc-VjH"/>
+                            <constraint firstAttribute="bottom" secondItem="oNj-SU-zhm" secondAttribute="bottom" id="MIi-aJ-hQQ"/>
+                            <constraint firstAttribute="height" constant="40" id="hQc-gX-Wgy"/>
+                            <constraint firstAttribute="trailing" secondItem="5Gu-r3-EyT" secondAttribute="trailing" constant="10" id="jKa-Nb-WNr"/>
+                            <constraint firstItem="5Gu-r3-EyT" firstAttribute="leading" secondItem="oNj-SU-zhm" secondAttribute="trailing" id="rNf-Zi-nqf"/>
+                            <constraint firstItem="oNj-SU-zhm" firstAttribute="leading" secondItem="aM5-xP-sZd" secondAttribute="leading" id="sEv-4c-KFT"/>
+                            <constraint firstItem="oNj-SU-zhm" firstAttribute="top" secondItem="aM5-xP-sZd" secondAttribute="top" id="swi-jc-Hl0"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    </view>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="oNj-SU-zhm" secondAttribute="trailing" id="CKG-ny-qGC"/>
-                <constraint firstItem="oNj-SU-zhm" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="IpX-OX-Pbv"/>
+                <constraint firstAttribute="bottom" secondItem="aM5-xP-sZd" secondAttribute="bottom" id="BfU-BA-7Kd"/>
+                <constraint firstItem="aM5-xP-sZd" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="C1c-JB-aQN"/>
                 <constraint firstAttribute="bottom" secondItem="ThV-Oa-yyO" secondAttribute="bottom" id="QAI-e2-c9M"/>
-                <constraint firstAttribute="bottom" secondItem="oNj-SU-zhm" secondAttribute="bottom" id="evd-Md-yJc"/>
                 <constraint firstItem="ThV-Oa-yyO" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="fUV-el-JOf"/>
                 <constraint firstItem="ThV-Oa-yyO" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="g7m-AK-lGU"/>
                 <constraint firstAttribute="trailing" secondItem="ThV-Oa-yyO" secondAttribute="trailing" id="nKg-hA-qyR"/>
+                <constraint firstAttribute="trailing" secondItem="aM5-xP-sZd" secondAttribute="trailing" id="zee-aE-CL9"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="213" height="220"/>
+            <connections>
+                <outlet property="avatarImageView" destination="ThV-Oa-yyO" id="ahD-gh-PPF"/>
+                <outlet property="nameLbl" destination="oNj-SU-zhm" id="y4k-2M-lZJ"/>
+            </connections>
             <point key="canvasLocation" x="-204.5" y="30"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="a-bomb" width="850" height="850"/>
+        <image name="heartWhite" width="35" height="35"/>
     </resources>
 </document>
