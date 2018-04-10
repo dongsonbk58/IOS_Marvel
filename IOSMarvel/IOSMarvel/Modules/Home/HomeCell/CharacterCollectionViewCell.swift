@@ -11,7 +11,8 @@ import UIKit
 class CharacterCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var nameLbl: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var favoriteButton: UIButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,8 +26,12 @@ class CharacterCollectionViewCell: UICollectionViewCell {
             }
         }
         if character.name != nil {
-            nameLbl.text = character.name
+            nameLabel.text = character.name
         }
+    }
+
+    func setContentForCell(element: Element) {
+        favoriteButton.isHidden = true
     }
 
     @IBAction func favoritePressed(_ sender: Any) {

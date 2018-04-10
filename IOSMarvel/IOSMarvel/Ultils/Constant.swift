@@ -10,7 +10,9 @@ import Foundation
 import UIKit
 import SwiftHash
 
-let heightTabbar = 49
+let heightTabbar = 49.0
+let heightStatusBar = 20.0
+let heightNavigationBar = 44.0
 let screenWidth = UIScreen.main.bounds.width
 let screenHeight = UIScreen.main.bounds.height
 let apiKey = "ce6b7d1982c52510f98eeec62180f202"

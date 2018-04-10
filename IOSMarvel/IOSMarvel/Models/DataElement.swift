@@ -1,24 +1,24 @@
 //
-//  CharacterResponse.swift
+//  DataElement.swift
 //  IOSMarvel
 //
-//  Created by mai.thi.giang on 4/6/18.
+//  Created by mai.thi.giang on 4/10/18.
 //  Copyright © 2018 mai.thi.giang. All rights reserved.
 //
 
 import Foundation
 import ObjectMapper
 
-class CharacterResponse: Mappable {
-    var data: DataCharacterResponse?
-    var code: Int?
+class DataElementResponse: Mappable {
+    var count: Int?
+    var elements = [Element]()
 
     required init(map: Map) {
         mapping(map: map)
     }
 
     func mapping(map: Map) {
-        code <- map["code"]
-        data <- map["data"]
+        count <- map["count"]
+        elements <- map["results"]
     }
 }

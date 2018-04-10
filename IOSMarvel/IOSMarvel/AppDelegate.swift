@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func setUpNavigation() {
         UINavigationBar.appearance().setBackgroundImage(self.makeImageWithColor(color: .black), for: .default)
+        UINavigationBar.appearance().shadowImage = UIImage()
     }
 
     func initTabbarController() {

@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		211CD8B1C0C02ADD7033A77D /* Pods_IOSMarvel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09255C6E455F56257990EC04 /* Pods_IOSMarvel.framework */; };
+		875224B3207C6A5D00AFC675 /* ElementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875224B1207C6A5D00AFC675 /* ElementViewController.swift */; };
+		875224B4207C6A5D00AFC675 /* ElementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 875224B2207C6A5D00AFC675 /* ElementViewController.xib */; };
+		875224B6207C721A00AFC675 /* TextSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875224B5207C721A00AFC675 /* TextSize.swift */; };
+		875224B8207C953300AFC675 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875224B7207C953300AFC675 /* Element.swift */; };
+		875224BA207C986800AFC675 /* DataElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875224B9207C986800AFC675 /* DataElement.swift */; };
+		875224BC207C98A200AFC675 /* ElementResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875224BB207C98A200AFC675 /* ElementResponse.swift */; };
+		875224BE207C98D000AFC675 /* ElementRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875224BD207C98D000AFC675 /* ElementRepository.swift */; };
 		876123F32075B3B8001E7167 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876123F22075B3B8001E7167 /* AppDelegate.swift */; };
 		876123FA2075B3B8001E7167 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 876123F92075B3B8001E7167 /* Assets.xcassets */; };
 		876123FD2075B3B8001E7167 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 876123FB2075B3B8001E7167 /* LaunchScreen.storyboard */; };
@@ -28,7 +35,7 @@
 		876ED33C207762480066448C /* CharacterListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876ED33A207762480066448C /* CharacterListCollectionViewCell.swift */; };
 		876ED33D207762480066448C /* CharacterListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 876ED33B207762480066448C /* CharacterListCollectionViewCell.xib */; };
 		87C2BB1B207AF7E800AB2B5C /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C2BB1A207AF7E800AB2B5C /* UIImageView.swift */; };
-		87C2BB1D207B166F00AB2B5C /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C2BB1C207B166F00AB2B5C /* Data.swift */; };
+		87C2BB1D207B166F00AB2B5C /* DataCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C2BB1C207B166F00AB2B5C /* DataCharacter.swift */; };
 		87C2BB1F207B1A8500AB2B5C /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C2BB1E207B1A8500AB2B5C /* Thumbnail.swift */; };
 		87C2BB26207B6BA900AB2B5C /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C2BB25207B6BA900AB2B5C /* AlertViewController.swift */; };
 		87D6E15220778CF800ACE2A1 /* CharacterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D6E15120778CF800ACE2A1 /* CharacterResponse.swift */; };
@@ -46,6 +53,13 @@
 		09255C6E455F56257990EC04 /* Pods_IOSMarvel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IOSMarvel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C88E24D5D04CB752B9B2676 /* Pods-IOSMarvel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOSMarvel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IOSMarvel/Pods-IOSMarvel.debug.xcconfig"; sourceTree = "<group>"; };
 		103BC25D03A2830D17DEF0EA /* Pods-IOSMarvel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOSMarvel.release.xcconfig"; path = "Pods/Target Support Files/Pods-IOSMarvel/Pods-IOSMarvel.release.xcconfig"; sourceTree = "<group>"; };
+		875224B1207C6A5D00AFC675 /* ElementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementViewController.swift; sourceTree = "<group>"; };
+		875224B2207C6A5D00AFC675 /* ElementViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ElementViewController.xib; sourceTree = "<group>"; };
+		875224B5207C721A00AFC675 /* TextSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSize.swift; sourceTree = "<group>"; };
+		875224B7207C953300AFC675 /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
+		875224B9207C986800AFC675 /* DataElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataElement.swift; sourceTree = "<group>"; };
+		875224BB207C98A200AFC675 /* ElementResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementResponse.swift; sourceTree = "<group>"; };
+		875224BD207C98D000AFC675 /* ElementRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementRepository.swift; sourceTree = "<group>"; };
 		876123EF2075B3B8001E7167 /* IOSMarvel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOSMarvel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		876123F22075B3B8001E7167 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		876123F92075B3B8001E7167 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -68,7 +82,7 @@
 		876ED33A207762480066448C /* CharacterListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListCollectionViewCell.swift; sourceTree = "<group>"; };
 		876ED33B207762480066448C /* CharacterListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterListCollectionViewCell.xib; sourceTree = "<group>"; };
 		87C2BB1A207AF7E800AB2B5C /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
-		87C2BB1C207B166F00AB2B5C /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		87C2BB1C207B166F00AB2B5C /* DataCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCharacter.swift; sourceTree = "<group>"; };
 		87C2BB1E207B1A8500AB2B5C /* Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
 		87C2BB25207B6BA900AB2B5C /* AlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		87D6E15120778CF800ACE2A1 /* CharacterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterResponse.swift; sourceTree = "<group>"; };
@@ -100,6 +114,15 @@
 				09255C6E455F56257990EC04 /* Pods_IOSMarvel.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8752249D207C5D4A00AFC675 /* Element */ = {
+			isa = PBXGroup;
+			children = (
+				875224B1207C6A5D00AFC675 /* ElementViewController.swift */,
+				875224B2207C6A5D00AFC675 /* ElementViewController.xib */,
+			);
+			path = Element;
 			sourceTree = "<group>";
 		};
 		876123E62075B3B8001E7167 = {
@@ -166,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				876ED32B207730D10066448C /* CharacterRepository.swift */,
+				875224BD207C98D000AFC675 /* ElementRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -174,8 +198,10 @@
 			isa = PBXGroup;
 			children = (
 				876ED32E2077490F0066448C /* Character.swift */,
-				87C2BB1C207B166F00AB2B5C /* Data.swift */,
+				87C2BB1C207B166F00AB2B5C /* DataCharacter.swift */,
 				87C2BB1E207B1A8500AB2B5C /* Thumbnail.swift */,
+				875224B7207C953300AFC675 /* Element.swift */,
+				875224B9207C986800AFC675 /* DataElement.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -194,6 +220,7 @@
 		876ED33520775EEC0066448C /* CharacterDetail */ = {
 			isa = PBXGroup;
 			children = (
+				8752249D207C5D4A00AFC675 /* Element */,
 				876ED33620775F210066448C /* CharacterDetailViewController.swift */,
 				876ED33720775F210066448C /* CharacterDetailViewController.xib */,
 			);
@@ -204,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				87D6E15120778CF800ACE2A1 /* CharacterResponse.swift */,
+				875224BB207C98A200AFC675 /* ElementResponse.swift */,
 			);
 			path = Character;
 			sourceTree = "<group>";
@@ -260,6 +288,7 @@
 			children = (
 				87FB624F2076209C00B4FE35 /* Constant.swift */,
 				876ED31820772B830066448C /* URLs.swift */,
+				875224B5207C721A00AFC675 /* TextSize.swift */,
 			);
 			path = Ultils;
 			sourceTree = "<group>";
@@ -347,6 +376,7 @@
 				87FB62462076119800B4FE35 /* FavoriteViewController.xib in Resources */,
 				876123FD2075B3B8001E7167 /* LaunchScreen.storyboard in Resources */,
 				87FB62422076118A00B4FE35 /* HomeViewController.xib in Resources */,
+				875224B4207C6A5D00AFC675 /* ElementViewController.xib in Resources */,
 				876ED33920775F210066448C /* CharacterDetailViewController.xib in Resources */,
 				876ED33D207762480066448C /* CharacterListCollectionViewCell.xib in Resources */,
 				876ED33420774F440066448C /* CharacterCollectionViewCell.xib in Resources */,
@@ -371,6 +401,7 @@
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftHash/SwiftHash.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/ViewPager-Swift/ViewPager_Swift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -381,6 +412,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftHash.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ViewPager_Swift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -442,28 +474,34 @@
 			files = (
 				87FB623C2076112F00B4FE35 /* MarvelTabbarController.swift in Sources */,
 				87FB62412076118A00B4FE35 /* HomeViewController.swift in Sources */,
+				875224B6207C721A00AFC675 /* TextSize.swift in Sources */,
 				876123F32075B3B8001E7167 /* AppDelegate.swift in Sources */,
 				876ED32720772E460066448C /* BaseResult.swift in Sources */,
 				876ED32920772E4D0066448C /* BaseError.swift in Sources */,
+				875224B3207C6A5D00AFC675 /* ElementViewController.swift in Sources */,
 				876ED32320772E0E0066448C /* BaseResponse.swift in Sources */,
 				87C2BB1B207AF7E800AB2B5C /* UIImageView.swift in Sources */,
 				876ED31920772B830066448C /* URLs.swift in Sources */,
 				876ED31F20772D970066448C /* CustomRequestAdapter.swift in Sources */,
 				87FB623E2076116000B4FE35 /* BaseViewController.swift in Sources */,
 				87C2BB26207B6BA900AB2B5C /* AlertViewController.swift in Sources */,
+				875224BC207C98A200AFC675 /* ElementResponse.swift in Sources */,
 				876ED32120772DE70066448C /* BaseRequest.swift in Sources */,
 				87FB62532076229400B4FE35 /* XibInitProtocol.swift in Sources */,
+				875224BA207C986800AFC675 /* DataElement.swift in Sources */,
 				876ED32C207730D10066448C /* CharacterRepository.swift in Sources */,
 				876ED33320774F440066448C /* CharacterCollectionViewCell.swift in Sources */,
 				87C2BB1F207B1A8500AB2B5C /* Thumbnail.swift in Sources */,
 				87FB62452076119800B4FE35 /* FavoriteViewController.swift in Sources */,
 				87D6E15220778CF800ACE2A1 /* CharacterResponse.swift in Sources */,
-				87C2BB1D207B166F00AB2B5C /* Data.swift in Sources */,
+				87C2BB1D207B166F00AB2B5C /* DataCharacter.swift in Sources */,
 				876ED31E20772D970066448C /* APIService.swift in Sources */,
+				875224BE207C98D000AFC675 /* ElementRepository.swift in Sources */,
 				87FB62502076209C00B4FE35 /* Constant.swift in Sources */,
 				876ED33C207762480066448C /* CharacterListCollectionViewCell.swift in Sources */,
 				876ED32F2077490F0066448C /* Character.swift in Sources */,
 				876ED33820775F210066448C /* CharacterDetailViewController.swift in Sources */,
+				875224B8207C953300AFC675 /* Element.swift in Sources */,
 				876ED32520772E3C0066448C /* ErrorResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
