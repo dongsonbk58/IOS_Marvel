@@ -8,11 +8,17 @@
 
 import UIKit
 
+protocol CharacterListCollectionViewCellDelegate: NSObjectProtocol {
+    func favoritePressed(character: Character)
+}
+
 class CharacterListCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var avatarImageVIew: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
+    weak var delegate: CharacterListCollectionViewCellDelegate?
+    var character: Character?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,20 +26,23 @@ class CharacterListCollectionViewCell: UICollectionViewCell {
     }
 
     func setContentForCell(character: Character) {
+        self.character = character
         if let path = character.thumbnail?.path {
             if let exten = character.thumbnail?.exten {
                 avatarImageVIew.setImageFromURl(stringImageUrl: "\(path)." + "\(exten)")
             }
         }
-        if character.name != nil {
-            nameLabel.text = character.name
+        if let name = character.name {
+            nameLabel.text = name
         }
-        if character.description != nil {
-            descriptionLabel.text = character.description
+        if let description = character.description {
+            descriptionLabel.text = description
         }
     }
 
     @IBAction func favoritePressed(_ sender: Any) {
-
+        if let characterObject = self.character {
+            self.delegate?.favoritePressed(character: characterObject)
+        }
     }
 }

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		211CD8B1C0C02ADD7033A77D /* Pods_IOSMarvel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09255C6E455F56257990EC04 /* Pods_IOSMarvel.framework */; };
+		871208C720805BC800B759A8 /* Character.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 871208C520805BC800B759A8 /* Character.xcdatamodeld */; };
+		871E1DB3207F5B9300F9AF1E /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 871E1DB2207F5B9300F9AF1E /* libsqlite3.0.tbd */; };
+		87215DC92080869C00FAF647 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87215DC82080869C00FAF647 /* DBManager.swift */; };
 		875224B3207C6A5D00AFC675 /* ElementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875224B1207C6A5D00AFC675 /* ElementViewController.swift */; };
 		875224B4207C6A5D00AFC675 /* ElementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 875224B2207C6A5D00AFC675 /* ElementViewController.xib */; };
 		875224B6207C721A00AFC675 /* TextSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875224B5207C721A00AFC675 /* TextSize.swift */; };
@@ -53,6 +56,10 @@
 		09255C6E455F56257990EC04 /* Pods_IOSMarvel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IOSMarvel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C88E24D5D04CB752B9B2676 /* Pods-IOSMarvel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOSMarvel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IOSMarvel/Pods-IOSMarvel.debug.xcconfig"; sourceTree = "<group>"; };
 		103BC25D03A2830D17DEF0EA /* Pods-IOSMarvel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOSMarvel.release.xcconfig"; path = "Pods/Target Support Files/Pods-IOSMarvel/Pods-IOSMarvel.release.xcconfig"; sourceTree = "<group>"; };
+		871208C620805BC800B759A8 /* Character.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Character.xcdatamodel; sourceTree = "<group>"; };
+		871E1DB2207F5B9300F9AF1E /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		871E1DB4207F5BEF00F9AF1E /* IOSMarvel-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IOSMarvel-Bridging-Header.h"; sourceTree = "<group>"; };
+		87215DC82080869C00FAF647 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		875224B1207C6A5D00AFC675 /* ElementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementViewController.swift; sourceTree = "<group>"; };
 		875224B2207C6A5D00AFC675 /* ElementViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ElementViewController.xib; sourceTree = "<group>"; };
 		875224B5207C721A00AFC675 /* TextSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSize.swift; sourceTree = "<group>"; };
@@ -101,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				871E1DB3207F5B9300F9AF1E /* libsqlite3.0.tbd in Frameworks */,
 				211CD8B1C0C02ADD7033A77D /* Pods_IOSMarvel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -111,6 +119,7 @@
 		7C82D108D37DF1FC492A79EA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				871E1DB2207F5B9300F9AF1E /* libsqlite3.0.tbd */,
 				09255C6E455F56257990EC04 /* Pods_IOSMarvel.framework */,
 			);
 			name = Frameworks;
@@ -154,10 +163,13 @@
 				87FB62512076228600B4FE35 /* Protocol */,
 				876ED31A20772BCB0066448C /* Servies */,
 				876ED32A207730890066448C /* Repositories */,
+				87DA34FE207F1A7D0044A7F5 /* Database */,
 				876123F22075B3B8001E7167 /* AppDelegate.swift */,
 				876123F92075B3B8001E7167 /* Assets.xcassets */,
+				871208C520805BC800B759A8 /* Character.xcdatamodeld */,
 				876123FB2075B3B8001E7167 /* LaunchScreen.storyboard */,
 				876123FE2075B3B8001E7167 /* Info.plist */,
+				871E1DB4207F5BEF00F9AF1E /* IOSMarvel-Bridging-Header.h */,
 			);
 			path = IOSMarvel;
 			sourceTree = "<group>";
@@ -234,6 +246,14 @@
 				875224BB207C98A200AFC675 /* ElementResponse.swift */,
 			);
 			path = Character;
+			sourceTree = "<group>";
+		};
+		87DA34FE207F1A7D0044A7F5 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				87215DC82080869C00FAF647 /* DBManager.swift */,
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 		87FB62322076101500B4FE35 /* Base Classes */ = {
@@ -346,6 +366,7 @@
 				TargetAttributes = {
 					876123EE2075B3B8001E7167 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -482,12 +503,14 @@
 				876ED32320772E0E0066448C /* BaseResponse.swift in Sources */,
 				87C2BB1B207AF7E800AB2B5C /* UIImageView.swift in Sources */,
 				876ED31920772B830066448C /* URLs.swift in Sources */,
+				87215DC92080869C00FAF647 /* DBManager.swift in Sources */,
 				876ED31F20772D970066448C /* CustomRequestAdapter.swift in Sources */,
 				87FB623E2076116000B4FE35 /* BaseViewController.swift in Sources */,
 				87C2BB26207B6BA900AB2B5C /* AlertViewController.swift in Sources */,
 				875224BC207C98A200AFC675 /* ElementResponse.swift in Sources */,
 				876ED32120772DE70066448C /* BaseRequest.swift in Sources */,
 				87FB62532076229400B4FE35 /* XibInitProtocol.swift in Sources */,
+				871208C720805BC800B759A8 /* Character.xcdatamodeld in Sources */,
 				875224BA207C986800AFC675 /* DataElement.swift in Sources */,
 				876ED32C207730D10066448C /* CharacterRepository.swift in Sources */,
 				876ED33320774F440066448C /* CharacterCollectionViewCell.swift in Sources */,
@@ -632,11 +655,14 @@
 			baseConfigurationReference = 0C88E24D5D04CB752B9B2676 /* Pods-IOSMarvel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = IOSMarvel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = HN.IOSMarvel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "IOSMarvel/IOSMarvel-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -647,11 +673,13 @@
 			baseConfigurationReference = 103BC25D03A2830D17DEF0EA /* Pods-IOSMarvel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = IOSMarvel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = HN.IOSMarvel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "IOSMarvel/IOSMarvel-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -679,6 +707,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		871208C520805BC800B759A8 /* Character.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				871208C620805BC800B759A8 /* Character.xcdatamodel */,
+			);
+			currentVersion = 871208C620805BC800B759A8 /* Character.xcdatamodel */;
+			path = Character.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 876123E72075B3B8001E7167 /* Project object */;
 }

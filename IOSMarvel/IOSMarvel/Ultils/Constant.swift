@@ -20,3 +20,4 @@ let privateKey = "98a64f8db0d6b8136c63bdf5818b538c75d46dbc"
 let tsInt = 1
 let hash = MD5("\(tsInt)" + privateKey + apiKey).lowercased()
 let appName = "Marvel"
+let characterTable = "CharacterEntity"

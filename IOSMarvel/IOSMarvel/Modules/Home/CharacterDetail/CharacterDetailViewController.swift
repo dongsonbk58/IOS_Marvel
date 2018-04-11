@@ -97,7 +97,14 @@ class CharacterDetailViewController: BaseViewController {
     }
 
     @IBAction func favoritePressed(_ sender: Any) {
-
+        if let character = self.character {
+            let dbManager = DBManager.sharedInstance
+            if let characterID = character.characterId {
+                if dbManager.isExist(characterID: characterID) == nil {
+                    dbManager.insertCharacter(character: character)
+                }
+            }
+        }
     }
 
     @IBAction func seeMorePressed(_ sender: Any) {
@@ -116,7 +123,7 @@ extension CharacterDetailViewController: ViewPagerControllerDataSource {
         let viewController = ElementViewController.instantiateFromXib()
         viewController.delegate = self
         viewController.characterID = self.character?.characterId
-        viewController.elementType = position
+        viewController.elementType = ElementType(rawValue: position)
         viewController.title = "\(tabs[position].title!)"
         return viewController
     }
