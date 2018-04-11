@@ -13,4 +13,5 @@ target 'IOSMarvel' do
     pod 'NVActivityIndicatorView'
     pod 'Kingfisher'
     pod 'SwiftHash'
+    pod 'ViewPager-Swift'
 end

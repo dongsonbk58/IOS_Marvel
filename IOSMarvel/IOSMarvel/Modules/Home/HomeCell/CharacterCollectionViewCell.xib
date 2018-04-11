@@ -70,7 +70,8 @@
             <size key="customSize" width="213" height="220"/>
             <connections>
                 <outlet property="avatarImageView" destination="ThV-Oa-yyO" id="ahD-gh-PPF"/>
-                <outlet property="nameLbl" destination="oNj-SU-zhm" id="y4k-2M-lZJ"/>
+                <outlet property="favoriteButton" destination="5Gu-r3-EyT" id="h9h-24-sjB"/>
+                <outlet property="nameLabel" destination="oNj-SU-zhm" id="15d-mr-QuK"/>
             </connections>
             <point key="canvasLocation" x="-204.5" y="30"/>
         </collectionViewCell>

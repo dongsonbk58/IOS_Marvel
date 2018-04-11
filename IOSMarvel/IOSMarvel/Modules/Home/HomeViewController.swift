@@ -118,6 +118,7 @@ class HomeViewController: BaseViewController, AlertViewController {
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let characterDetailVC = CharacterDetailViewController.instantiateFromXib()
+        characterDetailVC.character = characterList[indexPath.row]
         self.navigationController?.pushViewController(characterDetailVC, animated: true)
     }
 }
@@ -166,8 +167,8 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         var cellItemSize = collectionView.frame.size
         if isGrid {
-            cellItemSize.width = screenWidth/2 - 10
-            cellItemSize.height = screenWidth/2 - 10
+            cellItemSize.width = screenWidth / 2 - 10
+            cellItemSize.height = screenWidth / 2 - 10
         } else {
             cellItemSize.width = collectionView.frame.size.width
             cellItemSize.height = 100

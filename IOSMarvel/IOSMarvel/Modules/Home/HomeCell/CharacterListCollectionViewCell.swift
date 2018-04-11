@@ -11,8 +11,8 @@ import UIKit
 class CharacterListCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var avatarImageVIew: UIImageView!
-    @IBOutlet weak var descriptionLbl: UILabel!
-    @IBOutlet weak var nameLbl: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,10 +26,10 @@ class CharacterListCollectionViewCell: UICollectionViewCell {
             }
         }
         if character.name != nil {
-            nameLbl.text = character.name
+            nameLabel.text = character.name
         }
         if character.description != nil {
-            descriptionLbl.text = character.description
+            descriptionLabel.text = character.description
         }
     }
 
