@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import CoreData
 
 class HomeViewController: BaseViewController, AlertViewController {
 
@@ -23,7 +24,6 @@ class HomeViewController: BaseViewController, AlertViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         getListCharacter()
     }
 
@@ -136,12 +136,13 @@ extension HomeViewController: UICollectionViewDataSource {
                  return UICollectionViewCell()
             }
             cell.setContentForCell(character: characterList[indexPath.row])
-            if (indexPath.row == self.characterList.count - 1) && (isLoadMore == true) {
+            if (indexPath.row == self.characterList.count - 1) && isLoadMore {
                 if !isLoading {
                     self.loadMoreData()
                     isLoading = true
                 }
             }
+            cell.delegate = self
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CharacterListCollectionViewCell",
@@ -149,12 +150,13 @@ extension HomeViewController: UICollectionViewDataSource {
                  return UICollectionViewCell()
             }
             cell.setContentForCell(character: characterList[indexPath.row])
-            if (indexPath.row == self.characterList.count - 1) && (isLoadMore == true) {
+            if (indexPath.row == self.characterList.count - 1) && isLoadMore {
                 if !isLoading {
                     self.loadMoreData()
                     isLoading = true
                 }
             }
+            cell.delegate = self
             return cell
         }
     }
@@ -183,6 +185,17 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
             return UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
         } else {
             return UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+        }
+    }
+}
+
+extension HomeViewController: CharacterCollectionViewCellDelegate, CharacterListCollectionViewCellDelegate {
+    func favoritePressed(character: Character) {
+        let dbManager = DBManager.sharedInstance
+        if let characterID = character.characterId {
+            if dbManager.isExist(characterID: characterID) == nil {
+                dbManager.insertCharacter(character: character)
+            }
         }
     }
 }
