@@ -53,8 +53,9 @@ class MarvelTabbarController: UITabBarController {
         let homeNav = UINavigationController.init(rootViewController: homeVC)
         let homeTabbar = UITabBarItem()
         homeTabbar.tag = 0
-        homeTabbar.image = UIImage(named: "icn_feed_unSelected")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
-        homeTabbar.selectedImage = UIImage(named: "icn_feed")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
+        homeTabbar.image = UIImage(named: iconHomeUnSelected)?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
+        homeTabbar.selectedImage =
+            UIImage(named: iconHomeSelected)?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
         homeNav.tabBarItem = homeTabbar
         return homeNav
     }
@@ -64,9 +65,10 @@ class MarvelTabbarController: UITabBarController {
         let favoriteNav = UINavigationController.init(rootViewController: favoriteVC)
         let favoriteTabbar = UITabBarItem()
         favoriteTabbar.tag = 1
-        favoriteTabbar.image = UIImage(named: "icn_noti_unSelected")?
+        favoriteTabbar.badgeValue = String(describing: DBManager.sharedInstance.getListCharacter().count)
+        favoriteTabbar.image = UIImage(named: iconFavoriteUnSelected)?
             .withRenderingMode(UIImageRenderingMode.alwaysOriginal)
-        favoriteTabbar.selectedImage = UIImage(named: "icn_noti")?
+        favoriteTabbar.selectedImage = UIImage(named: iconFavoriteSelected)?
             .withRenderingMode(UIImageRenderingMode.alwaysOriginal)
         favoriteNav.tabBarItem = favoriteTabbar
         return favoriteNav

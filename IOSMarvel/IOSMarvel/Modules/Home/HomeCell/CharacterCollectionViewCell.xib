@@ -38,7 +38,7 @@
                                     <constraint firstAttribute="height" constant="25" id="ILc-9O-7vZ"/>
                                     <constraint firstAttribute="width" constant="25" id="g9k-DZ-hy5"/>
                                 </constraints>
-                                <state key="normal" image="heartWhite"/>
+                                <state key="normal" backgroundImage="heartWhite"/>
                                 <connections>
                                     <action selector="favoritePressed:" destination="gTV-IL-0wX" eventType="touchUpInside" id="2up-ZH-GYX"/>
                                 </connections>

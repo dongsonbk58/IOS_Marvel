@@ -83,6 +83,7 @@
             <connections>
                 <outlet property="avatarImageVIew" destination="iOd-Xj-EyU" id="bhj-UQ-RkQ"/>
                 <outlet property="descriptionLabel" destination="iKM-pl-880" id="Nbc-mF-iDS"/>
+                <outlet property="favoriteButton" destination="y9Y-lB-Ueo" id="g3s-B4-3Cc"/>
                 <outlet property="nameLabel" destination="42h-Kj-NQo" id="MXS-3Q-EJ2"/>
             </connections>
             <point key="canvasLocation" x="-159.5" y="75"/>

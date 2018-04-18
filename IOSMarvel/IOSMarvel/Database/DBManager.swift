@@ -34,8 +34,8 @@ class DBManager {
             do {
                 peoples = try managedContext.fetch(fetchRequest)
                 for people in peoples {
-                    let peopleID = people.value(forKeyPath: "characterID") as? Int ?? 0
-                    if peopleID == characterID {
+                    let peopleID = people.value(forKeyPath: "characterID") as? String
+                    if peopleID == String(characterID) {
                         return people
                     }
                 }
@@ -50,7 +50,9 @@ class DBManager {
         if let managedContext = getManagerContext() {
             if let entity = NSEntityDescription.entity(forEntityName: characterTable, in: managedContext) {
                 let characterObject = NSManagedObject(entity: entity, insertInto: managedContext)
-                characterObject.setValue(String(describing: character.characterId), forKey: "characterID")
+                if let characterID = character.characterId {
+                    characterObject.setValue(String(characterID), forKey: "characterID")
+                }
                 characterObject.setValue(character.name, forKey: "name")
                 characterObject.setValue(character.description, forKey: "desc")
                 characterObject.setValue(character.modified, forKey: "modified")
@@ -59,10 +61,15 @@ class DBManager {
                         characterObject.setValue(path + "." + exten, forKey: "avatarUrl")
                     }
                 }
+                if let avatarUrl = character.avatarUrl {
+                    characterObject.setValue(avatarUrl, forKey: "avatarUrl")
+                }
                 do {
                     try managedContext.save()
+                    if let characterID = character.characterId {
+                        appDelegate().characterIdList.append(characterID)
+                    }
                 } catch {
-
                 }
             }
         }
@@ -76,7 +83,7 @@ class DBManager {
             do {
                 peoples = try managedContext.fetch(fetchRequest)
                 for people in peoples {
-                    let character = Character(characterId: people.value(forKeyPath: "characterID") as? Int ?? 0,
+                    let character = Character(characterId: people.value(forKeyPath: "characterID") as? String ?? "",
                                               name: people.value(forKeyPath: "name") as? String ?? "",
                                               description: people.value(forKeyPath: "desc") as? String ?? "",
                                               modified: people.value(forKeyPath: "modified") as? String ?? "",
@@ -84,19 +91,23 @@ class DBManager {
                     characters.append(character)
                 }
             } catch {
-
             }
         }
         return characters
     }
 
-    func deleteCharacter(characterID: Int) -> Bool {
+    func deleteCharacter(characterID: Int) {
         if let managedContext = getManagerContext() {
             if let people = isExist(characterID: characterID) {
                 managedContext.delete(people)
-                return true
+                do {
+                    try managedContext.save()
+                    if let index = appDelegate().characterIdList.index(of: characterID) {
+                        appDelegate().characterIdList.remove(at: index)
+                    }
+                } catch {
+                }
             }
         }
-        return false
     }
 }

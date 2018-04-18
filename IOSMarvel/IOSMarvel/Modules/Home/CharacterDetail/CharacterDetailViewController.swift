@@ -11,13 +11,14 @@ import ViewPager_Swift
 
 class CharacterDetailViewController: BaseViewController {
 
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var elementsView: UIView!
-    @IBOutlet weak var modifiedLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var seeMoreButton: UIButton!
-    @IBOutlet weak var descriptionHeightContraint: NSLayoutConstraint!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var elementsView: UIView!
+    @IBOutlet private weak var modifiedLabel: UILabel!
+    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var avatarImageView: UIImageView!
+    @IBOutlet private weak var seeMoreButton: UIButton!
+    @IBOutlet private weak var descriptionHeightContraint: NSLayoutConstraint!
+    @IBOutlet private weak var favoriteButton: UIButton!
 
     var character: Character?
     var heightDescription: CGFloat = 0.0
@@ -30,6 +31,8 @@ class CharacterDetailViewController: BaseViewController {
     var viewPager: ViewPagerController?
     var options: ViewPagerOptions?
     var clickedSeeMore = false
+    var isFavorited = false
+    var passFromFavoriteVC = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,12 +54,23 @@ class CharacterDetailViewController: BaseViewController {
         titleLabel.text = character?.name
         descriptionLabel.text = character?.description
         modifiedLabel.text = character?.modified
-        if let path = character?.thumbnail?.path {
-            if let exten = character?.thumbnail?.exten {
-                avatarImageView.setImageFromURl(stringImageUrl: path + "." + exten)
+        if passFromFavoriteVC {
+            guard let avatarUrl = character?.avatarUrl else {
+                avatarImageView.image = UIImage(named: avatarDefault)
+                return
             }
+            avatarImageView.setImageFromURl(stringImageUrl: avatarUrl)
+        } else {
+            guard let path = character?.thumbnail?.path else {
+                avatarImageView.image = UIImage(named: avatarDefault)
+                return
+            }
+            guard let exten = character?.thumbnail?.exten else {
+                avatarImageView.image = UIImage(named: avatarDefault)
+                return
+            }
+            avatarImageView.setImageFromURl(stringImageUrl: path + "." + exten)
         }
-
         if let description = character?.description {
             let descriptionBounds = TextSize.size(description,
                                                   font: UIFont.systemFont(ofSize: 15.0), width: screenWidth - 20)
@@ -67,6 +81,11 @@ class CharacterDetailViewController: BaseViewController {
                 seeMoreButton.isHidden = true
                 descriptionHeightContraint.constant = descriptionBounds.height
             }
+        }
+        if self.isFavorited {
+            favoriteButton.setBackgroundImage(UIImage.init(named: iconHeartFilledWhite), for: .normal)
+        } else {
+            favoriteButton.setBackgroundImage(UIImage.init(named: iconHeartWhite), for: .normal)
         }
     }
 
@@ -99,10 +118,28 @@ class CharacterDetailViewController: BaseViewController {
     @IBAction func favoritePressed(_ sender: Any) {
         if let character = self.character {
             let dbManager = DBManager.sharedInstance
+            let count = dbManager.getListCharacter().count
             if let characterID = character.characterId {
-                if dbManager.isExist(characterID: characterID) == nil {
-                    dbManager.insertCharacter(character: character)
+                if self.isFavorited {
+                    dbManager.deleteCharacter(characterID: characterID)
+                    favoriteButton.setBackgroundImage(UIImage.init(named: iconHeartWhite), for: .normal)
+                    if let tabItems = self.tabBarController?.tabBar.items as NSArray! {
+                        if let tabItem = tabItems[1] as? UITabBarItem {
+                            tabItem.badgeValue = String(count - 1)
+                        }
+                    }
+                } else {
+                    if dbManager.isExist(characterID: characterID) == nil {
+                        dbManager.insertCharacter(character: character)
+                        favoriteButton.setBackgroundImage(UIImage.init(named: iconHeartFilledWhite), for: .normal)
+                        if let tabItems = self.tabBarController?.tabBar.items as NSArray! {
+                            if let tabItem = tabItems[1] as? UITabBarItem {
+                                tabItem.badgeValue = String(count + 1)
+                            }
+                        }
+                    }
                 }
+                 self.isFavorited = !self.isFavorited
             }
         }
     }

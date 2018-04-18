@@ -16,6 +16,7 @@
                 <outlet property="descriptionHeightContraint" destination="zIV-YN-tQC" id="Vqc-Lf-I1A"/>
                 <outlet property="descriptionLabel" destination="ms4-6V-KtF" id="ViW-FL-wNZ"/>
                 <outlet property="elementsView" destination="GjI-ng-z8l" id="ibz-YT-dHH"/>
+                <outlet property="favoriteButton" destination="8bL-HP-Goi" id="j04-Pp-4me"/>
                 <outlet property="modifiedLabel" destination="Ebl-lC-0tN" id="SY3-fG-5I0"/>
                 <outlet property="seeMoreButton" destination="7Y9-oQ-5d3" id="yiu-qb-GTu"/>
                 <outlet property="titleLabel" destination="C0O-Wh-ySu" id="vNL-mh-RAk"/>
@@ -83,7 +84,7 @@
                                         <constraint firstAttribute="height" constant="35" id="9y0-OB-l5F"/>
                                         <constraint firstAttribute="width" constant="35" id="scM-7j-jz0"/>
                                     </constraints>
-                                    <state key="normal" image="heartWhite2"/>
+                                    <state key="normal" backgroundImage="heartWhite2"/>
                                     <connections>
                                         <action selector="favoritePressed:" destination="-1" eventType="touchUpInside" id="VUU-Z7-hI7"/>
                                     </connections>
