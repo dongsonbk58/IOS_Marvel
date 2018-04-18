@@ -13,6 +13,7 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var characterIdList = [Int]()
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -22,6 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.initTabbarController()
         if let window = self.window {
             window.makeKeyAndVisible()
+        }
+        for character in DBManager.sharedInstance.getListCharacter() {
+            if let characterId = character.characterId {
+                characterIdList.append(characterId)
+            }
         }
         return true
     }

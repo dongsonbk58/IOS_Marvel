@@ -24,7 +24,6 @@ class HomeViewController: BaseViewController, AlertViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        getListCharacter()
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,7 +31,17 @@ class HomeViewController: BaseViewController, AlertViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        getListCharacter()
+    }
+
     override func initUI() {
+        setUpSearchBar()
+        setUpSwitchButton()
+        setUpColectionView()
+    }
+
+    func setUpSearchBar() {
         let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: screenWidth - 70, height: 25))
         searchBar.placeholder = "Search"
         let searchTextField = searchBar.value(forKey: "_searchField") as? UITextField
@@ -40,16 +49,20 @@ class HomeViewController: BaseViewController, AlertViewController {
         searchTextField?.textColor = .white
         let leftNavBarButton = UIBarButtonItem(customView: searchBar)
         self.navigationItem.leftBarButtonItem = leftNavBarButton
+    }
 
+    func setUpSwitchButton() {
         let switchButton = UIButton(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
         let switchImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-        switchImageView.image = UIImage.init(named: "change")
+        switchImageView.image = UIImage.init(named: iconSwitchButton)
         switchImageView.contentMode = .scaleAspectFit
         switchButton.addSubview(switchImageView)
         switchButton.addTarget(self, action: #selector(switchCollectionView), for: .touchUpInside)
         let rightNavBarButton = UIBarButtonItem(customView: switchButton)
         self.navigationItem.rightBarButtonItem = rightNavBarButton
+    }
 
+    func setUpColectionView() {
         characterCollectionView.register(UINib(nibName: "CharacterCollectionViewCell", bundle: nil),
                                          forCellWithReuseIdentifier: "CharacterCollectionViewCell")
         characterCollectionView.register(UINib(nibName: "CharacterListCollectionViewCell", bundle: nil),
@@ -64,14 +77,19 @@ class HomeViewController: BaseViewController, AlertViewController {
             switch result {
             case .success(let characterResponse):
                 self.characterList.removeAll()
-                self.characterList = (characterResponse?.data?.characters)!
-                if self.characterList.count < self.limit {
-                    self.isLoadMore = false
-                } else {
-                    self.isLoadMore = true
+                if let characterList = characterResponse?.data?.characters {
+                    self.characterList = characterList
+                    self.isLoadMore = self.characterList.count < self.limit ? false : true
+                    for i in 0..<characterList.count {
+                        if let characterId = characterList[i].characterId {
+                            if appDelegate().characterIdList.contains(characterId) {
+                                characterList[i].isFavorited = true
+                            }
+                        }
+                    }
+                    self.characterCollectionView.reloadData()
+                    self.page += 1
                 }
-                self.characterCollectionView.reloadData()
-                self.page += 1
                 self.hideLoading()
             case .failure(let error):
                 self.showErrorAlert(message: error?.errorMessage)
@@ -93,11 +111,7 @@ class HomeViewController: BaseViewController, AlertViewController {
                 characterArr = (characterResponse?.data?.characters)!
                 self.characterList.append(contentsOf: characterArr)
                 self.page += 1
-                if count < self.characterList.count {
-                    self.isLoadMore = true
-                } else {
-                    self.isLoadMore = false
-                }
+                self.isLoadMore = count < self.characterList.count ? true : false
                 self.characterCollectionView.reloadData()
                 self.isLoading = false
                 self.hideLoading()
@@ -112,6 +126,39 @@ class HomeViewController: BaseViewController, AlertViewController {
         self.isGrid = !self.isGrid
         self.characterCollectionView.reloadData()
     }
+
+    func favoriteCharacter(character: Character, isFavorited: Bool, atIndexPath: IndexPath) {
+        let dbManager = DBManager.sharedInstance
+        let characterChange = self.characterList[atIndexPath.row]
+        let count = dbManager.getListCharacter().count
+        if let characterID = character.characterId {
+            if isFavorited {
+                // delete
+                dbManager.deleteCharacter(characterID: characterID)
+                if let tabItems = self.tabBarController?.tabBar.items as NSArray! {
+                    if let tabItem = tabItems[1] as? UITabBarItem {
+                        tabItem.badgeValue = String(count - 1)
+                    }
+                }
+                characterChange.isFavorited = false
+                self.characterList[atIndexPath.row] = characterChange
+                self.characterCollectionView.reloadData()
+            } else {
+                // insert
+                if dbManager.isExist(characterID: characterID) == nil {
+                    dbManager.insertCharacter(character: character)
+                    if let tabItems = self.tabBarController?.tabBar.items as NSArray! {
+                        if let tabItem = tabItems[1] as? UITabBarItem {
+                            tabItem.badgeValue = String(count + 1)
+                        }
+                    }
+                }
+                characterChange.isFavorited = true
+                self.characterList[atIndexPath.row] = characterChange
+                self.characterCollectionView.reloadData()
+            }
+        }
+    }
 }
 
 // MARK: UICollectionView
@@ -119,6 +166,9 @@ extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let characterDetailVC = CharacterDetailViewController.instantiateFromXib()
         characterDetailVC.character = characterList[indexPath.row]
+        if let isFavorited = characterList[indexPath.row].isFavorited {
+            characterDetailVC.isFavorited = isFavorited
+        }
         self.navigationController?.pushViewController(characterDetailVC, animated: true)
     }
 }
@@ -135,21 +185,23 @@ extension HomeViewController: UICollectionViewDataSource {
                                                                 for: indexPath) as? CharacterCollectionViewCell else {
                  return UICollectionViewCell()
             }
-            cell.setContentForCell(character: characterList[indexPath.row])
+            cell.setContentForCell(character: characterList[indexPath.row], atIndexPath: indexPath)
             if (indexPath.row == self.characterList.count - 1) && isLoadMore {
                 if !isLoading {
                     self.loadMoreData()
                     isLoading = true
                 }
             }
-            cell.delegate = self
+            cell.onCompletionFavorite = { [weak self] (characterObject, isFavorited, indexPath) in
+                self?.favoriteCharacter(character: characterObject, isFavorited: isFavorited, atIndexPath: indexPath)
+            }
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CharacterListCollectionViewCell",
              for: indexPath) as? CharacterListCollectionViewCell else {
                  return UICollectionViewCell()
             }
-            cell.setContentForCell(character: characterList[indexPath.row])
+            cell.setContentForCell(character: characterList[indexPath.row], atIndexPath: indexPath)
             if (indexPath.row == self.characterList.count - 1) && isLoadMore {
                 if !isLoading {
                     self.loadMoreData()
@@ -189,13 +241,8 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension HomeViewController: CharacterCollectionViewCellDelegate, CharacterListCollectionViewCellDelegate {
-    func favoritePressed(character: Character) {
-        let dbManager = DBManager.sharedInstance
-        if let characterID = character.characterId {
-            if dbManager.isExist(characterID: characterID) == nil {
-                dbManager.insertCharacter(character: character)
-            }
-        }
+extension HomeViewController: CharacterListCollectionViewCellDelegate {
+    func favoritePressed(character: Character, isFavorited: Bool, atIndexPath: IndexPath) {
+        self.favoriteCharacter(character: character, isFavorited: isFavorited, atIndexPath: atIndexPath)
     }
 }
