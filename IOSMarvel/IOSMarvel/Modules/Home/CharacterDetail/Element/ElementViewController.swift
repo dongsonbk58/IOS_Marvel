@@ -29,8 +29,7 @@ class ElementViewController: BaseViewController, AlertViewController {
     var storyList = [Element]()
     var characterID: Int?
     var elementType = ElementType(rawValue: 0)
-    var page = 1
-    var limit = 10
+    var page = 0
     var isLoadMore = false
     var isLoading = false
     private let elementRepository: ElementRepository = ElementImplement(api: APIService.share)
@@ -46,8 +45,8 @@ class ElementViewController: BaseViewController, AlertViewController {
     }
 
     override func initUI() {
-        elementCollectionView.register(UINib(nibName: "CharacterCollectionViewCell", bundle: nil),
-                 forCellWithReuseIdentifier: "CharacterCollectionViewCell")
+        elementCollectionView.register(UINib(nibName: characterCollectionViewCell, bundle: nil),
+                 forCellWithReuseIdentifier: characterCollectionViewCell)
         noDataLabel.isHidden = true
     }
 
@@ -57,7 +56,7 @@ class ElementViewController: BaseViewController, AlertViewController {
 
     func getListEachElement(elementResponse: ElementResponse, elements: [Element]) -> [Element] {
         if let elementArr = (elementResponse.data?.elements) {
-            self.isLoadMore = elementArr.count < self.limit ? false : true
+            self.isLoadMore = elementArr.count < limit ? false : true
             self.checkEmptyList(elements: elementArr)
             return elementArr
         }
@@ -66,10 +65,10 @@ class ElementViewController: BaseViewController, AlertViewController {
 
     func getListElementOfCharacter(elementType: Int) {
         if let characterID = self.characterID {
-            self.page = 1
+            self.page = 0
             self.showLoadingOnParent()
             elementRepository.getListElement(characterID: characterID,
-                                             limit: limit, elementType: elementType, completion: { (result) in
+                                             page: self.page, elementType: elementType, completion: { (result) in
                 switch result {
                 case .success(let elementResponse):
                     if let elementResponse = elementResponse {
@@ -105,7 +104,7 @@ class ElementViewController: BaseViewController, AlertViewController {
     func loadMoreEachElement(elementResponse: ElementResponse, elements: [Element]) -> [Element] {
         if let elementArr = (elementResponse.data?.elements) {
             var elementList = elements
-            let count = self.comicList.count
+            let count = elementList.count
             elementList.append(contentsOf: elementArr)
             self.isLoadMore = count < elementList.count ? true : false
             return elementList
@@ -120,7 +119,7 @@ class ElementViewController: BaseViewController, AlertViewController {
         if let characterID = self.characterID {
             self.showLoadingOnParent()
             elementRepository.getListElement(characterID: characterID,
-                                             limit: self.page * limit, elementType: elementType) { (result) in
+                                             page: self.page, elementType: elementType) { (result) in
                 switch result {
                 case .success(let elementResponse):
                     if let elementResponse = elementResponse {
@@ -214,7 +213,7 @@ extension ElementViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CharacterCollectionViewCell",
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: characterCollectionViewCell,
                                                             for: indexPath) as? CharacterCollectionViewCell else {
                                                                 return UICollectionViewCell()
         }
@@ -253,7 +252,8 @@ extension ElementViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
+        return UIEdgeInsets(top: CGFloat(edgeGrid), left: CGFloat(edgeGrid),
+                            bottom: CGFloat(edgeGrid), right: CGFloat(edgeGrid))
     }
 }
 

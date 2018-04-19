@@ -34,7 +34,7 @@ class DBManager {
             do {
                 peoples = try managedContext.fetch(fetchRequest)
                 for people in peoples {
-                    let peopleID = people.value(forKeyPath: "characterID") as? String
+                    let peopleID = people.value(forKeyPath: feildID) as? String
                     if peopleID == String(characterID) {
                         return people
                     }
@@ -51,18 +51,18 @@ class DBManager {
             if let entity = NSEntityDescription.entity(forEntityName: characterTable, in: managedContext) {
                 let characterObject = NSManagedObject(entity: entity, insertInto: managedContext)
                 if let characterID = character.characterId {
-                    characterObject.setValue(String(characterID), forKey: "characterID")
+                    characterObject.setValue(String(characterID), forKey: feildID)
                 }
-                characterObject.setValue(character.name, forKey: "name")
-                characterObject.setValue(character.description, forKey: "desc")
-                characterObject.setValue(character.modified, forKey: "modified")
+                characterObject.setValue(character.name, forKey: feildName)
+                characterObject.setValue(character.description, forKey: feildDesc)
+                characterObject.setValue(character.modified, forKey: feildModidied)
                 if let path = character.thumbnail?.path {
                     if let exten = character.thumbnail?.exten {
-                        characterObject.setValue(path + "." + exten, forKey: "avatarUrl")
+                        characterObject.setValue(path + "." + exten, forKey: feildAvatarUrl)
                     }
                 }
                 if let avatarUrl = character.avatarUrl {
-                    characterObject.setValue(avatarUrl, forKey: "avatarUrl")
+                    characterObject.setValue(avatarUrl, forKey: feildAvatarUrl)
                 }
                 do {
                     try managedContext.save()
@@ -79,15 +79,15 @@ class DBManager {
         var characters = [Character]()
         var peoples = [NSManagedObject]()
         if let managedContext = getManagerContext() {
-            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CharacterEntity")
+            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
             do {
                 peoples = try managedContext.fetch(fetchRequest)
                 for people in peoples {
-                    let character = Character(characterId: people.value(forKeyPath: "characterID") as? String ?? "",
-                                              name: people.value(forKeyPath: "name") as? String ?? "",
-                                              description: people.value(forKeyPath: "desc") as? String ?? "",
-                                              modified: people.value(forKeyPath: "modified") as? String ?? "",
-                                              avatarUrl: people.value(forKeyPath: "avatarUrl") as? String ?? "")
+                    let character = Character(characterId: people.value(forKeyPath: feildID) as? String ?? "",
+                                              name: people.value(forKeyPath: feildName) as? String ?? "",
+                                              description: people.value(forKeyPath: feildDesc) as? String ?? "",
+                                              modified: people.value(forKeyPath: feildModidied) as? String ?? "",
+                                              avatarUrl: people.value(forKeyPath: feildAvatarUrl) as? String ?? "")
                     characters.append(character)
                 }
             } catch {
@@ -109,5 +109,28 @@ class DBManager {
                 }
             }
         }
+    }
+
+    func searchCharacter(name: String) -> [Character] {
+        var characters = [Character]()
+        var peoples = [NSManagedObject]()
+        if let managedContext = getManagerContext() {
+            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
+            do {
+                peoples = try managedContext.fetch(fetchRequest)
+                for people in peoples {
+                    if (people.value(forKey: feildName) as? String ?? "").lowercased().contains(name.lowercased()) {
+                        let character = Character(characterId: people.value(forKeyPath: feildID) as? String ?? "",
+                                                  name: people.value(forKeyPath: feildName) as? String ?? "",
+                                                  description: people.value(forKeyPath: feildDesc) as? String ?? "",
+                                                  modified: people.value(forKeyPath: feildModidied) as? String ?? "",
+                                                  avatarUrl: people.value(forKeyPath: feildAvatarUrl) as? String ?? "")
+                        characters.append(character)
+                    }
+                }
+            } catch {
+            }
+        }
+        return characters
     }
 }

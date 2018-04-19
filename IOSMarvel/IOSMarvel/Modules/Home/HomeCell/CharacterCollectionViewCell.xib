@@ -23,17 +23,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="213" height="220"/>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aM5-xP-sZd">
-                        <rect key="frame" x="0.0" y="180" width="213" height="40"/>
+                        <rect key="frame" x="0.0" y="176" width="213" height="44"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A-Bomb" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNj-SU-zhm">
-                                <rect key="frame" x="0.0" y="0.0" width="178" height="40"/>
+                                <rect key="frame" x="0.0" y="0.0" width="178" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Gu-r3-EyT">
-                                <rect key="frame" x="178" y="7.5" width="25" height="25"/>
+                                <rect key="frame" x="178" y="9.5" width="25" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="ILc-9O-7vZ"/>
                                     <constraint firstAttribute="width" constant="25" id="g9k-DZ-hy5"/>
@@ -48,7 +48,7 @@
                         <constraints>
                             <constraint firstItem="5Gu-r3-EyT" firstAttribute="centerY" secondItem="aM5-xP-sZd" secondAttribute="centerY" id="7zS-pc-VjH"/>
                             <constraint firstAttribute="bottom" secondItem="oNj-SU-zhm" secondAttribute="bottom" id="MIi-aJ-hQQ"/>
-                            <constraint firstAttribute="height" constant="40" id="hQc-gX-Wgy"/>
+                            <constraint firstAttribute="height" constant="44" id="hQc-gX-Wgy"/>
                             <constraint firstAttribute="trailing" secondItem="5Gu-r3-EyT" secondAttribute="trailing" constant="10" id="jKa-Nb-WNr"/>
                             <constraint firstItem="5Gu-r3-EyT" firstAttribute="leading" secondItem="oNj-SU-zhm" secondAttribute="trailing" id="rNf-Zi-nqf"/>
                             <constraint firstItem="oNj-SU-zhm" firstAttribute="leading" secondItem="aM5-xP-sZd" secondAttribute="leading" id="sEv-4c-KFT"/>
