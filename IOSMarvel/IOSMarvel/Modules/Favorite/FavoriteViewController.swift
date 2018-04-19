@@ -18,34 +18,43 @@ class FavoriteViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        getCharacterFromDB()
+    }
+
+    func getCharacterFromDB() {
         characterList = DBManager.sharedInstance.getListCharacter()
         noDataLabel.isHidden = characterList.isEmpty ? false : true
         favoriteCollectionView.reloadData()
     }
 
+    func searchCharacter(name: String) {
+        characterList = DBManager.sharedInstance.searchCharacter(name: name)
+        noDataLabel.isHidden = characterList.isEmpty ? false : true
+        favoriteCollectionView.reloadData()
+    }
+
     func setUpSearchBar() {
-        let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: screenWidth - 70, height: 25))
-        searchBar.placeholder = "Search"
+        let searchBar = UISearchBar(frame: CGRect(x: CGFloat(edgeList), y: CGFloat(edgeList),
+                                                  width: CGFloat(widthSearchBar), height: CGFloat(heightSearchBar)))
+        searchBar.placeholder = search
         let searchTextField = searchBar.value(forKey: "_searchField") as? UITextField
         searchTextField?.backgroundColor = .black
         searchTextField?.textColor = .white
         let leftNavBarButton = UIBarButtonItem(customView: searchBar)
+        searchBar.delegate = self
         self.navigationItem.leftBarButtonItem = leftNavBarButton
     }
 
     func setUpSwitchButton() {
-        let switchButton = UIButton(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
-        let switchImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        let switchButton = UIButton(frame: CGRect(x: CGFloat(edgeList), y: CGFloat(edgeList),
+                                                  width: CGFloat(widthSwitchButton),
+                                                  height: CGFloat(widthSwitchButton)))
+        let switchImageView = UIImageView(frame: CGRect(x: CGFloat(edgeList), y: CGFloat(edgeList),
+                                                        width: CGFloat(widthSwitchImageView),
+                                                        height: CGFloat(widthSwitchImageView)))
         switchImageView.image = UIImage.init(named: iconSwitchButton)
         switchImageView.contentMode = .scaleAspectFit
         switchButton.addSubview(switchImageView)
@@ -55,10 +64,10 @@ class FavoriteViewController: BaseViewController {
     }
 
     func setUpColectionView() {
-        favoriteCollectionView.register(UINib(nibName: "CharacterCollectionViewCell", bundle: nil),
-                                        forCellWithReuseIdentifier: "CharacterCollectionViewCell")
-        favoriteCollectionView.register(UINib(nibName: "CharacterListCollectionViewCell", bundle: nil),
-                                        forCellWithReuseIdentifier: "CharacterListCollectionViewCell")
+        favoriteCollectionView.register(UINib(nibName: characterCollectionViewCell, bundle: nil),
+                                        forCellWithReuseIdentifier: characterCollectionViewCell)
+        favoriteCollectionView.register(UINib(nibName: characterListCollectionViewCell, bundle: nil),
+                                        forCellWithReuseIdentifier: characterListCollectionViewCell)
         favoriteCollectionView.backgroundColor = UIColor.lightGray
         noDataLabel.isHidden = true
     }
@@ -94,7 +103,7 @@ extension FavoriteViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if isGrid {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CharacterCollectionViewCell",
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: characterCollectionViewCell,
                                                                 for: indexPath) as? CharacterCollectionViewCell else {
                                                                     return UICollectionViewCell()
             }
@@ -102,7 +111,7 @@ extension FavoriteViewController: UICollectionViewDataSource {
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:
-                "CharacterListCollectionViewCell", for: indexPath) as? CharacterListCollectionViewCell else {
+                characterListCollectionViewCell, for: indexPath) as? CharacterListCollectionViewCell else {
                     return UICollectionViewCell()
             }
             cell.setContentFavoriteForCell(character: characterList[indexPath.row])
@@ -123,7 +132,7 @@ extension FavoriteViewController: UICollectionViewDelegateFlowLayout {
             cellItemSize.height = screenWidth / 2 - 10
         } else {
             cellItemSize.width = collectionView.frame.size.width
-            cellItemSize.height = 100
+            cellItemSize.height = CGFloat(heightCellList)
         }
         return cellItemSize
     }
@@ -132,9 +141,21 @@ extension FavoriteViewController: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
         if isGrid {
-            return UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
+            return UIEdgeInsets(top: CGFloat(edgeGrid), left: CGFloat(edgeGrid),
+                                bottom: CGFloat(edgeGrid), right: CGFloat(edgeGrid))
         } else {
-            return UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+            return UIEdgeInsets(top: CGFloat(edgeList), left: CGFloat(edgeList),
+                                bottom: CGFloat(edgeList), right: CGFloat(edgeList))
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        if isGrid {
+            return CGFloat(lineSpacingGrid)
+        } else {
+            return CGFloat(lineSpacingList)
         }
     }
 }
@@ -149,6 +170,17 @@ extension FavoriteViewController: CharacterListCollectionViewCellDelegate {
             self.navigationController?.tabBarItem.badgeValue = String(count - 1)
             noDataLabel.isHidden = characterList.isEmpty ? false : true
             favoriteCollectionView.reloadData()
+        }
+    }
+}
+
+// MARK: Searchbar
+extension FavoriteViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText != "" {
+            searchCharacter(name: searchText)
+        } else {
+            getCharacterFromDB()
         }
     }
 }

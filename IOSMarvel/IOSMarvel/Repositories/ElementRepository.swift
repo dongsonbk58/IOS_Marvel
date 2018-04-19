@@ -10,7 +10,7 @@ import Foundation
 import ObjectMapper
 
 protocol ElementRepository {
-    func getListElement(characterID: Int, limit: Int,
+    func getListElement(characterID: Int, page: Int,
                         elementType: Int, completion: @escaping (BaseResult<ElementResponse>) -> Void)
 }
 
@@ -21,11 +21,12 @@ class ElementImplement: ElementRepository {
         self.api = api
     }
 
-    func getListElement(characterID: Int, limit: Int,
+    func getListElement(characterID: Int, page: Int,
                         elementType: Int, completion: @escaping (BaseResult<ElementResponse>) -> Void) {
          let body: [String: Any]  = [
          "apikey": apiKey,
          "limit": limit,
+         "offset": page * offset,
          "hash": hash,
          "ts": tsInt
          ]

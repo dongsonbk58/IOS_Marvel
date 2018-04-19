@@ -23,10 +23,10 @@ class CharacterDetailViewController: BaseViewController {
     var character: Character?
     var heightDescription: CGFloat = 0.0
     var tabs = [
-        ViewPagerTab(title: "Comics", image: nil),
-        ViewPagerTab(title: "Events", image: nil),
-        ViewPagerTab(title: "Series", image: nil),
-        ViewPagerTab(title: "Stories", image: nil)
+        ViewPagerTab(title: comics, image: nil),
+        ViewPagerTab(title: events, image: nil),
+        ViewPagerTab(title: series, image: nil),
+        ViewPagerTab(title: stories, image: nil)
     ]
     var viewPager: ViewPagerController?
     var options: ViewPagerOptions?
@@ -74,7 +74,7 @@ class CharacterDetailViewController: BaseViewController {
         if let description = character?.description {
             let descriptionBounds = TextSize.size(description,
                                                   font: UIFont.systemFont(ofSize: 15.0), width: screenWidth - 20)
-            if descriptionBounds.height > 70 {
+            if descriptionBounds.height > CGFloat(heightText) {
                 seeMoreButton.isHidden = false
                 heightDescription = descriptionBounds.height
             } else {

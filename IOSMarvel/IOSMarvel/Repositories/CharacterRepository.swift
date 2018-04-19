@@ -10,7 +10,8 @@ import Foundation
 import ObjectMapper
 
 protocol CharacterRepository {
-    func getListCharacter(limit: Int, completion: @escaping (BaseResult<CharacterResponse>) -> Void)
+    func getListCharacter(page: Int, completion: @escaping (BaseResult<CharacterResponse>) -> Void)
+    func searchCharacter(page: Int, name: String, completion: @escaping (BaseResult<CharacterResponse>) -> Void)
 }
 
 class CharacterImplement: CharacterRepository {
@@ -20,12 +21,35 @@ class CharacterImplement: CharacterRepository {
         self.api = api
     }
 
-    func getListCharacter(limit: Int, completion: @escaping (BaseResult<CharacterResponse>) -> Void) {
+    func getListCharacter(page: Int, completion: @escaping (BaseResult<CharacterResponse>) -> Void) {
         let body: [String: Any]  = [
             "apikey": apiKey,
             "limit": limit,
+            "offset": page * offset,
             "hash": hash,
             "ts": tsInt
+        ]
+
+        let input = BaseRequest(url: URLs.APIGetListCharacterURL, requestType: .get, body: body)
+        api?.request(input: input) { (object: CharacterResponse?, error) in
+            if let obj = object {
+                completion(.success(obj))
+            } else if let error = error {
+                completion(.failure(error: error))
+            } else {
+                completion(.failure(error: nil))
+            }
+        }
+    }
+
+    func searchCharacter(page: Int, name: String, completion: @escaping (BaseResult<CharacterResponse>) -> Void) {
+        let body: [String: Any]  = [
+            "apikey": apiKey,
+            "limit": limit,
+            "offset": page * offset,
+            "hash": hash,
+            "ts": tsInt,
+            "nameStartsWith": name
         ]
 
         let input = BaseRequest(url: URLs.APIGetListCharacterURL, requestType: .get, body: body)
