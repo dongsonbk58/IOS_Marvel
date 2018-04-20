@@ -152,6 +152,7 @@
                 <constraint firstAttribute="trailing" secondItem="PvK-N5-n44" secondAttribute="trailing" id="lrN-8T-azK"/>
                 <constraint firstItem="GjI-ng-z8l" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="xeO-ZW-wFT"/>
             </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <point key="canvasLocation" x="26.5" y="51.5"/>
         </view>
     </objects>

@@ -72,7 +72,8 @@ class CharacterCollectionViewCell: UICollectionViewCell {
         }
     }
 
-    func setContentFavoriteForCell(character: Character) {
+    func setContentFavoriteForCell(character: Character, atIndexPath: IndexPath) {
+        self.indexPath = atIndexPath
         self.character = character
         setFavourited(isFavourite: true)
         if let name = character.name {

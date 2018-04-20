@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -48,15 +47,15 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="kr3-0m-19L" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="BNJ-aB-Zww"/>
-                <constraint firstItem="zyL-ro-UNT" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="BbL-ck-NUR"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="kr3-0m-19L" secondAttribute="trailing" constant="16" id="WG6-H3-bKM"/>
+                <constraint firstAttribute="trailing" secondItem="zyL-ro-UNT" secondAttribute="trailing" id="8sx-pE-012"/>
+                <constraint firstItem="kr3-0m-19L" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="BNJ-aB-Zww"/>
+                <constraint firstAttribute="trailing" secondItem="kr3-0m-19L" secondAttribute="trailing" constant="16" id="WG6-H3-bKM"/>
+                <constraint firstAttribute="bottom" secondItem="zyL-ro-UNT" secondAttribute="bottom" id="cX9-pO-q4g"/>
+                <constraint firstItem="zyL-ro-UNT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="eLp-ji-1QY"/>
                 <constraint firstItem="zyL-ro-UNT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="fWp-hs-OGw"/>
-                <constraint firstItem="zyL-ro-UNT" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="pHq-j7-MMO"/>
                 <constraint firstItem="kr3-0m-19L" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="upt-V9-xmH"/>
-                <constraint firstItem="zyL-ro-UNT" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="usx-4s-A5k"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <point key="canvasLocation" x="26.5" y="51.5"/>
         </view>
     </objects>

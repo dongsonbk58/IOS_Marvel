@@ -13,8 +13,16 @@ class BaseViewController: UIViewController, NVActivityIndicatorViewable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.initUI()
+        setNeedsStatusBarAppearanceUpdate()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,7 +31,6 @@ class BaseViewController: UIViewController, NVActivityIndicatorViewable {
     }
 
     func initUI() {
-
     }
 
     func showLoadingOnParent() {
