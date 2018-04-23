@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -50,13 +49,12 @@
             <constraints>
                 <constraint firstItem="Nye-9a-OTM" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="4Uc-Az-Wwc"/>
                 <constraint firstItem="SMZ-SX-X9h" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="4Wh-l4-5bm"/>
-                <constraint firstItem="SMZ-SX-X9h" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="4kC-UB-ozK"/>
-                <constraint firstItem="SMZ-SX-X9h" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="90f-Ao-KdC"/>
-                <constraint firstItem="SMZ-SX-X9h" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="ac7-1E-VLq"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Nye-9a-OTM" secondAttribute="trailing" id="cK1-ET-M06"/>
-                <constraint firstItem="Nye-9a-OTM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="cYl-zQ-gVW"/>
+                <constraint firstItem="SMZ-SX-X9h" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4kC-UB-ozK"/>
+                <constraint firstItem="SMZ-SX-X9h" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="90f-Ao-KdC"/>
+                <constraint firstItem="SMZ-SX-X9h" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="ac7-1E-VLq"/>
+                <constraint firstAttribute="trailing" secondItem="Nye-9a-OTM" secondAttribute="trailing" id="cK1-ET-M06"/>
+                <constraint firstItem="Nye-9a-OTM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cYl-zQ-gVW"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="24.5" y="51.5"/>
         </view>
     </objects>

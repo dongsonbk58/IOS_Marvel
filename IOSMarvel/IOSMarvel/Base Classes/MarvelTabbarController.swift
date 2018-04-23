@@ -14,9 +14,15 @@ class MarvelTabbarController: UITabBarController {
         super.viewDidLoad()
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         setupTabbarDatasource()
         setupTabbarUI()
+        UIApplication.shared.statusBarStyle = .lightContent
+        setNeedsStatusBarAppearanceUpdate()
     }
 
     fileprivate func setupTabbarDatasource() {
@@ -45,12 +51,12 @@ class MarvelTabbarController: UITabBarController {
         UIRectFill(CGRect.init(x: 0, y: 0, width: size.width, height: size.height))
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return image != nil ? image! : UIImage()
+        return image ?? UIImage()
     }
 
-    func setTabbarItemHome() -> UINavigationController {
+    func setTabbarItemHome() -> NavigationViewController {
         let homeVC = HomeViewController.instantiateFromXib()
-        let homeNav = UINavigationController.init(rootViewController: homeVC)
+        let homeNav = NavigationViewController.init(rootViewController: homeVC)
         let homeTabbar = UITabBarItem()
         homeTabbar.tag = 0
         homeTabbar.image = UIImage(named: iconHomeUnSelected)?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
@@ -60,9 +66,9 @@ class MarvelTabbarController: UITabBarController {
         return homeNav
     }
 
-    func setTabbarItemFavorite() -> UINavigationController {
+    func setTabbarItemFavorite() -> NavigationViewController {
         let favoriteVC = FavoriteViewController.instantiateFromXib()
-        let favoriteNav = UINavigationController.init(rootViewController: favoriteVC)
+        let favoriteNav = NavigationViewController.init(rootViewController: favoriteVC)
         let favoriteTabbar = UITabBarItem()
         favoriteTabbar.tag = 1
         favoriteTabbar.badgeValue = String(describing: DBManager.sharedInstance.getListCharacter().count)

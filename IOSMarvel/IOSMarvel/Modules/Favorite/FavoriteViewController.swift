@@ -12,6 +12,7 @@ class FavoriteViewController: BaseViewController {
 
     @IBOutlet private weak var favoriteCollectionView: UICollectionView!
     @IBOutlet private weak var noDataLabel: UILabel!
+    var pointTapScroll: CGFloat = 0.0
 
     var isGrid = true
     var characterList = [Character]()
@@ -26,13 +27,13 @@ class FavoriteViewController: BaseViewController {
 
     func getCharacterFromDB() {
         characterList = DBManager.sharedInstance.getListCharacter()
-        noDataLabel.isHidden = characterList.isEmpty ? false : true
+        noDataLabel.isHidden = !characterList.isEmpty
         favoriteCollectionView.reloadData()
     }
 
     func searchCharacter(name: String) {
         characterList = DBManager.sharedInstance.searchCharacter(name: name)
-        noDataLabel.isHidden = characterList.isEmpty ? false : true
+        noDataLabel.isHidden = !characterList.isEmpty
         favoriteCollectionView.reloadData()
     }
 
@@ -82,6 +83,19 @@ class FavoriteViewController: BaseViewController {
         self.isGrid = !self.isGrid
         self.favoriteCollectionView.reloadData()
     }
+
+    func deleteCharacterFromFavorite(character: Character, isFavorited: Bool, atIndexPath: IndexPath) {
+        let dbManager = DBManager.sharedInstance
+        guard let badgeValue = self.navigationController?.tabBarItem.badgeValue else { return }
+        let count = Int(badgeValue) ?? 0
+        if let characterID = character.characterId {
+            dbManager.deleteCharacter(characterID: characterID)
+            self.characterList = dbManager.getListCharacter()
+            self.navigationController?.tabBarItem.badgeValue = String(count - 1)
+            noDataLabel.isHidden = !characterList.isEmpty
+            favoriteCollectionView.reloadData()
+        }
+    }
 }
 
 // MARK: UICollectionView
@@ -107,14 +121,19 @@ extension FavoriteViewController: UICollectionViewDataSource {
                                                                 for: indexPath) as? CharacterCollectionViewCell else {
                                                                     return UICollectionViewCell()
             }
-            cell.setContentFavoriteForCell(character: characterList[indexPath.row])
+            cell.setContentFavoriteForCell(character: characterList[indexPath.row], atIndexPath: indexPath)
+            cell.onCompletionFavorite = { [weak self] (characterObject, isFavorited, indexPath) in
+                guard let `self` = self else { return }
+                self.deleteCharacterFromFavorite(character: characterObject,
+                                                  isFavorited: isFavorited, atIndexPath: indexPath)
+            }
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:
                 characterListCollectionViewCell, for: indexPath) as? CharacterListCollectionViewCell else {
                     return UICollectionViewCell()
             }
-            cell.setContentFavoriteForCell(character: characterList[indexPath.row])
+            cell.setContentFavoriteForCell(character: characterList[indexPath.row], atIndexPath: indexPath)
             cell.delegate = self
             return cell
         }
@@ -162,15 +181,7 @@ extension FavoriteViewController: UICollectionViewDelegateFlowLayout {
 
 extension FavoriteViewController: CharacterListCollectionViewCellDelegate {
     func favoritePressed(character: Character, isFavorited: Bool, atIndexPath: IndexPath) {
-        let dbManager = DBManager.sharedInstance
-        let count = Int((self.navigationController?.tabBarItem.badgeValue)!) ?? 0
-        if let characterID = character.characterId {
-            dbManager.deleteCharacter(characterID: characterID)
-            self.characterList = dbManager.getListCharacter()
-            self.navigationController?.tabBarItem.badgeValue = String(count - 1)
-            noDataLabel.isHidden = characterList.isEmpty ? false : true
-            favoriteCollectionView.reloadData()
-        }
+        self.deleteCharacterFromFavorite(character: character, isFavorited: isFavorited, atIndexPath: atIndexPath)
     }
 }
 
@@ -181,6 +192,42 @@ extension FavoriteViewController: UISearchBarDelegate {
             searchCharacter(name: searchText)
         } else {
             getCharacterFromDB()
+        }
+    }
+}
+
+extension FavoriteViewController: UIScrollViewDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        pointTapScroll = scrollView.contentOffset.y
+    }
+
+    func hideTabBar() {
+        guard let tabbarController = self.tabBarController else {
+            return
+        }
+        var frame = tabbarController.tabBar.frame
+        frame.origin.y = UIScreen.main.bounds.height
+        UIView.animate(withDuration: 0.5, animations: {
+            tabbarController.tabBar.frame = frame
+        })
+    }
+
+    func showTabBar() {
+        guard let tabbarController = self.tabBarController else {
+            return
+        }
+        var frame = tabbarController.tabBar.frame
+        frame.origin.y = UIScreen.main.bounds.height - frame.size.height
+        UIView.animate(withDuration: 0.5, animations: {
+            tabbarController.tabBar.frame = frame
+        })
+    }
+
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y > pointTapScroll { // scroll up
+            showTabBar()
+        } else { // scroll down
+            hideTabBar()
         }
     }
 }

@@ -51,7 +51,7 @@ class ElementViewController: BaseViewController, AlertViewController {
     }
 
     func checkEmptyList(elements: [Element]) {
-        self.noDataLabel.isHidden = elements.isEmpty ? false : true
+        self.noDataLabel.isHidden = !elements.isEmpty
     }
 
     func getListEachElement(elementResponse: ElementResponse, elements: [Element]) -> [Element] {

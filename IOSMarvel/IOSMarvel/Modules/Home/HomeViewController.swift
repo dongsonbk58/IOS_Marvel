@@ -20,6 +20,7 @@ class HomeViewController: BaseViewController, AlertViewController {
     var page = 0
     var isLoadMore = false
     var isLoading = false
+    var pointTapScroll: CGFloat = 0.0
     private let characterRepository: CharacterRepository = CharacterImplement(api: APIService.share)
 
     override func viewDidLoad() {
@@ -27,7 +28,12 @@ class HomeViewController: BaseViewController, AlertViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         getListCharacter()
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 
     override func initUI() {
@@ -84,7 +90,7 @@ class HomeViewController: BaseViewController, AlertViewController {
                     }
                 }
             }
-            noDataLabel.isHidden = self.characterList.isEmpty ? false : true
+            noDataLabel.isHidden = !self.characterList.isEmpty
             self.characterCollectionView.reloadData()
             self.page += 1
         }
@@ -212,7 +218,8 @@ extension HomeViewController: UICollectionViewDataSource {
                 }
             }
             cell.onCompletionFavorite = { [weak self] (characterObject, isFavorited, indexPath) in
-                self?.favoriteCharacter(character: characterObject, isFavorited: isFavorited, atIndexPath: indexPath)
+                guard let `self` = self else { return }
+                self.favoriteCharacter(character: characterObject, isFavorited: isFavorited, atIndexPath: indexPath)
             }
             return cell
         } else {
@@ -285,6 +292,42 @@ extension HomeViewController: UISearchBarDelegate {
             self.searchCharacter(name: searchText)
         } else {
             self.getListCharacter()
+        }
+    }
+}
+
+extension HomeViewController: UIScrollViewDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        pointTapScroll = scrollView.contentOffset.y
+    }
+
+    func hideTabBar() {
+        guard let tabbarController = self.tabBarController else {
+            return
+        }
+        var frame = tabbarController.tabBar.frame
+        frame.origin.y = screenHeight
+        UIView.animate(withDuration: 0.5, animations: {
+            tabbarController.tabBar.frame = frame
+        })
+    }
+
+    func showTabBar() {
+        guard let tabbarController = self.tabBarController else {
+            return
+        }
+        var frame = tabbarController.tabBar.frame
+        frame.origin.y = screenHeight - frame.size.height
+        UIView.animate(withDuration: 0.5, animations: {
+            tabbarController.tabBar.frame = frame
+        })
+    }
+
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y > pointTapScroll { // scroll up
+            showTabBar()
+        } else { // scroll down
+            hideTabBar()
         }
     }
 }

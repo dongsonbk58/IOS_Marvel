@@ -65,8 +65,9 @@ class CharacterListCollectionViewCell: UICollectionViewCell {
         avatarImageVIew.setImageFromURl(stringImageUrl: "\(path)." + "\(exten)")
     }
 
-    func setContentFavoriteForCell(character: Character) {
+    func setContentFavoriteForCell(character: Character, atIndexPath: IndexPath) {
         self.character = character
+        self.indexPath = atIndexPath
         setFavourited(isFavourite: true)
         if let name = character.name {
             nameLabel.text = name

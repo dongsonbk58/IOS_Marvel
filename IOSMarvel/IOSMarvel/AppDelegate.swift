@@ -18,12 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.setUpNavigation()
         self.window?.backgroundColor = UIColor.black
         self.initTabbarController()
-        if let window = self.window {
-            window.makeKeyAndVisible()
-        }
+        window?.makeKeyAndVisible()
+        self.setUpNavigation()
         for character in DBManager.sharedInstance.getListCharacter() {
             if let characterId = character.characterId {
                 characterIdList.append(characterId)
@@ -35,6 +33,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setUpNavigation() {
         UINavigationBar.appearance().setBackgroundImage(self.makeImageWithColor(color: .black), for: .default)
         UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().tintColor = .white
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
+        UINavigationBar.appearance().isTranslucent = false
     }
 
     func initTabbarController() {
@@ -72,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         context?.fill(rect)
         let image: UIImage? = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return image != nil ? image! : UIImage()
+        return image ?? UIImage()
     }
 // MARK: - Core Data stack
     lazy var persistentContainer: NSPersistentContainer = {
